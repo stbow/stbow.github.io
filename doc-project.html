@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Documentation</title>
+    <link rel="stylesheet" href="doc-project-styles.css" />
+  </head>
+  <body>
+    <nav id="navbar">
+      <header><h1>CSS Documentation</h1></header>
+      <ul>
+        <li><a class="nav-link" href="#introduction">Introduction</a></li>
+        <li><a class="nav-link" href="#syntax">Syntax</a></li>
+        <li><a class="nav-link" href="#box_model">Box Model</a></li>
+        <li><a class="nav-link" href="#positioning">Positioning</a></li>
+        <li><a class="nav-link" href="#flexbox">Flexbox</a></li>
+      </ul>
+    </nav>
+    <main id="main-doc">
+      <section id="introduction" class="main-section">
+        <header><h2>Introduction</h2></header>
+        <p>CSS is the language we use to style a Web page.</p>
+        <p>CSS stands for Cascading Style Sheets. CSS describes how HTML elements are to be displayed on screen, paper, or in other media. CSS saves a lot of work. It can control the layout of multiple web pages all at once. External stylesheets are stored in CSS files.</p>
+        <p>CSS is used to define styles for your web pages, including the design, layout and variations in display for different devices and screen sizes.</p>
+        <p>HTML was created to describe the content of a web page, like:</p>
+        <code>&lt;h1&gt;This is a heading&lt;/h1&gt;<br>&lt;p&gt;This is a paragraph.&lt;/p&gt;</code>
+        <p>When styling is defined on every page of a site, it is a nightmare for web developers. CSS removed the style formatting from the HTML page!</p>
+      </section>
+      <section id="syntax" class="main-section">
+        <header><h2>Syntax</h2></header>
+        <p>A CSS rule consists of a selector and a declaration block.</p>
+        <img id="syntax-img" src="https://www.w3schools.com/css/img_selector.gif" alt="css syntax example" />
+        <p></p>
+        <code></code>
+        <ul>
+          <li>The <span class="term">selector</span> points to the HTML element you want to style.</li>
+          <li>The <span class="term">declaration block</span> contains one or more declarations separated by semicolons.</li>
+          <li>Each declaration includes a CSS <span class="term">property</span> name and a <span class="term">value</span>, separated by a colon.</li>
+          <li>Multiple CSS declarations are separated with semicolons, and declaration blocks are surrounded by curly braces.</li>
+        </ul>
+      </section>
+      <section id="box_model" class="main-section">
+        <header><h2>Box Model</h2></header>
+        <p>All HTML elements can be considered as boxes. In CSS, the term "box model" is used when talking about design and layout. The CSS box model is essentially a box that wraps around every HTML element. It consists of: content, padding, borders and margins. The image below illustrates the box model:</p>
+        <img src="https://miro.medium.com/v2/resize:fit:408/1*sKnLrT1TtqWDZg7GWoBCow.png" alt="box model diagram" />
+        <ul>
+          <li>Content - The content of the box, where text and images appear</li>
+          <li>Padding - Clears an area around the content. The padding is transparent</li>
+          <li>Border - A border that goes around the padding and content</li>
+          <li>Margin - Clears an area outside the border. The margin is transparent</li>
+        </ul>
+        <p>The box model allows us to add a border around elements, and to define space between elements.</p>
+      </section>
+      <section id="positioning" class="main-section">
+        <header><h2>Positioning</h2></header>
+        <p>The position property specifies the type of positioning method used for an element.<br><br>There are five different position values:</p>
+        <code>
+          <ul>
+            <li>static</li>
+            <li>relative</li>
+            <li>fixed</li>
+            <li>absolute</li>
+            <li>sticky</li>
+          </ul>
+        </code>
+        <p>Elements are then positioned using the top, bottom, left, and right properties. However, these properties will not work unless the position property is set first. They also work differently depending on the position value.</p>
+        <h3>position: static;</h3>
+        <p>HTML elements are positioned static by default.</p>
+        <p>An element with <code>position: static;</code> is not positioned in any special way; it is always positioned according to the normal flow of the page.</p>
+        <code>div.static {<br>position: static;<br>border: 3px solid #73AD21;<br>
+}</code>
+        <h3>position: relative;</h3>
+        <p>An element with <code>position: relative;</code> is positioned relative to its normal position.</p>
+        <code>div.relative {<br>position: relative;<br>left: 30px;<br>border: 3px solid #73AD21;<br>}</code>
+        <h3>position: fixed;</h3>
+        <p>An element with <code>position: fixed;</code> is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. The top, right, bottom, and left properties are used to position the element.</p>
+        <code>div.fixed {<br>position: fixed;<br>bottom: 0;<br>right: 0;<br>width: 300px;<br>border: 3px solid #73AD21;<br>}</code>
+        <h3>position: absolute;</h3>
+        <p>An element with <code>position: absolute;</code> is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed).</p>
+        <p>However; if an absolute positioned element has no positioned ancestors, it uses the document body, and moves along with page scrolling.</p>
+        <p><strong>Note:</strong> Absolute positioned elements are removed from the normal flow, and can overlap elements.</p>
+        <code>div.absolute {<br>position: absolute;<br>top: 80px;<br>right: 0;<br>width: 200px;<br>height: 100px;<br>border: 3px solid #73AD21;<br>}</code>
+        <h3>position: sticky;</h3>
+        <p>HTML elements are positioned static by default.</p>
+        <p>An element with <code>position: sticky;</code> is positioned based on the user's scroll position.</p>
+        <p>A sticky element toggles between <code>relative</code> and <code>fixed</code>, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed).</p>
+        <code>div.sticky {<br>position: -webkit-sticky; /* Safari */<br>position: sticky;<br>top: 0;<br>background-color: green;<br>border: 2px solid #4CAF50;<br>}</code>
+      </section>
+      <section id="flexbox" class="main-section">
+        <header><h2>Flexbox</h2></header>
+        <p>To start using the Flexbox model, you need to first define a flex container.</p>
+        <p>The flex container becomes flexible by setting the <code>display</code> property to <code>flex</code>:</p>
+        <code>.flex-container {<br>display: flex;<br>}</code>
+        <p>The flex container properties are:</p>
+        <code><ul><li>flex-direction</li>
+          <li>flex-wrap</li>
+          <li>flex-flow</li>
+          <li>justify-content</li>
+          <li>align-items</li>
+          <li>align-content</li></ul></code>
+        <h3>flex-direction</h3>
+        <p>The <code>flex-direction</code> property defines in which direction the container wants to stack the flex items.</p>
+        <ul>
+          <li><code>column</code> stacks the flex items vertically,from top to bottom</li>
+          <li><code>column-reverse</code> stacks the flex items vertically, but from bottom to top</li>
+          <li><code>row</code> stacks the flex items horizontally, from left to right</li>
+          <li><code>row-reverse</code> stacks the flex items horizontally, but from right to left</li>
+        </ul>
+        <h3>flex-wrap</h3>
+        <p>The <code>flex-wrap</code> property specifies whether the flex items should wrap or not.</p>
+        <ul>
+          <li><code>wrap</code> specifies that the flex items will wrap if necessary</li>
+          <li><code>nowrap</code> specifies that the flex items will not wrap (this is default)</li>
+          <li><code>wrap-reverse</code> specifies that the flexible items will wrap if necessary, in reverse order</li>
+        </ul>
+        <h3>flex-flow</h3>
+        <p>The <code>flex-wrap</code> property is a shorthand property for setting both the <code>flex-direction</code> and <code>flex-wrap</code> properties.</p>
+        <code>.flex-container {<br>display: flex;<br>flex-flow: row wrap;<br>}</code>
+        <h3>justify-content</h3>
+        <p>The <code>justify-content</code> property is used to align the flex items <strong>horizontally</strong>.</p>
+        <ul>
+          <li><code>center</code> aligns the flex items at the center of the container</li>
+          <li><code>flex-start</code> aligns the flex items at the beginning of the container (this is default)</li>
+          <li><code>flex-end</code> aligns the flex items at the end of the container</li>
+          <li><code>space-around</code> displays the flex items with space before, between, and after the lines</li>
+          <li><code>space-between</code> displays the flex items with space between the lines</li>
+        </ul>
+        <h3>align-items</h3>
+        <p>The <code>align-items</code> property is used to align the flex items <strong>vertically</strong>.</p>
+        <ul>
+          <li><code>center</code> aligns the flex items at the middle of the container</li>
+          <li><code>flex-start</code> aligns the flex items at the top of the container</li>
+          <li><code>flex-end</code> aligns the flex items at the bottom of the container</li>
+          <li><code>stretch</code> stretches the flex items to fill the container (this is default)</li>
+          <li><code>baseline</code> aligns the flex items such as their baselines align</li>
+        </ul>
+        <h3>align-content</h3>
+        <p>The <code>align-content</code> property is used to align the flex lines.</p>
+        <ul>
+          <li><code>space-between</code> displays the flex lines with equal space between them</li>
+          <li><code>space-around</code> displays the flex lines with space before, between, and after them</li>
+          <li><code>stretch</code> stretches the flex lines to take up the remaining space (this is default)</li>
+          <li><code>center</code> displays the flex lines in the middle of the container</li>
+          <li><code>flex-start</code> displays the flex lines at the start of the container</li>
+          <li><code>flex-end</code> displays the flex lines at the end of the container</li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <p>All information taken from <a href="https://www.w3schools.com/css/css_intro.asp">W3 Schools CSS Tutorial</a>.</p>
+    </footer>
+  </body>
+</html>
