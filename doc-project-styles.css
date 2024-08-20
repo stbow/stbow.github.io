@@ -23,13 +23,48 @@ main {
   margin-left: 250px;
 }
 
+/* Formatting code snippets */
+
 code {
-  background-color: #e8e8e8;
+  background-color: #f8f8f6;
+}
+
+.indent {
+  padding-left: 20px;
+}
+
+.string {
+  color: orange;
+}
+
+.comment {
+  color: darkgray;
+}
+
+.selector {
+  color: cornflowerblue;
+}
+
+.property {
+  color: mediumpurple;
+}
+
+.number {
+  color: mediumseagreen;
+}
+
+.value {
+  color: darkorange;
 }
 
 img {
   width: 100%;
   height: auto;
+  max-width: 500px;
+}
+
+.term {
+  font-style: italic;
 }
 
 footer {

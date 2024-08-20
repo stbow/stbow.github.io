@@ -31,8 +31,6 @@
         <header><h2>Syntax</h2></header>
         <p>A CSS rule consists of a selector and a declaration block.</p>
         <img id="syntax-img" src="https://www.w3schools.com/css/img_selector.gif" alt="css syntax example" />
-        <p></p>
-        <code></code>
         <ul>
           <li>The <span class="term">selector</span> points to the HTML element you want to style.</li>
           <li>The <span class="term">declaration block</span> contains one or more declarations separated by semicolons.</li>
@@ -45,10 +43,10 @@
         <p>All HTML elements can be considered as boxes. In CSS, the term "box model" is used when talking about design and layout. The CSS box model is essentially a box that wraps around every HTML element. It consists of: content, padding, borders and margins. The image below illustrates the box model:</p>
         <img src="https://miro.medium.com/v2/resize:fit:408/1*sKnLrT1TtqWDZg7GWoBCow.png" alt="box model diagram" />
         <ul>
-          <li>Content - The content of the box, where text and images appear</li>
-          <li>Padding - Clears an area around the content. The padding is transparent</li>
-          <li>Border - A border that goes around the padding and content</li>
-          <li>Margin - Clears an area outside the border. The margin is transparent</li>
+          <li><span class="term">Content</span> - The content of the box, where text and images appear</li>
+          <li><span class="term">Padding</span> - Clears an area around the content. The padding is transparent</li>
+          <li><span class="term">Border</span> - A border that goes around the padding and content</li>
+          <li><span class="term">Margin</span> - Clears an area outside the border. The margin is transparent</li>
         </ul>
         <p>The box model allows us to add a border around elements, and to define space between elements.</p>
       </section>
@@ -68,24 +66,53 @@
         <h3>position: static;</h3>
         <p>HTML elements are positioned static by default.</p>
         <p>An element with <code>position: static;</code> is not positioned in any special way; it is always positioned according to the normal flow of the page.</p>
-        <code>div.static {<br>position: static;<br>border: 3px solid #73AD21;<br>
-}</code>
+        <code>
+          <span class="selector">div.static</span> {<br>
+          <span class="indent"><span class="property">position</span>: <span class="value">static</span>;</span><br>
+          <span class="indent"><span class="property">border</span>: <span class="number">3px</span> <span class="value">solid #73AD21</span>;</span><br>
+          }
+        </code>
         <h3>position: relative;</h3>
         <p>An element with <code>position: relative;</code> is positioned relative to its normal position.</p>
-        <code>div.relative {<br>position: relative;<br>left: 30px;<br>border: 3px solid #73AD21;<br>}</code>
+        <code><span class="selector">div.relative</span> {<br>
+          <span class="indent"><span class="property">position</span>: <span class="value">relative</span>;</span><br>
+          <span class="indent"><span class="property">left</span>: <span class="number">30px</span>;</span><br>
+          <span class="indent"><span class="property">border</span>: <span class="number">3px</span> <span class="value">solid #73AD21</span>;</span><br>
+          }
+        </code>
         <h3>position: fixed;</h3>
         <p>An element with <code>position: fixed;</code> is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. The top, right, bottom, and left properties are used to position the element.</p>
-        <code>div.fixed {<br>position: fixed;<br>bottom: 0;<br>right: 0;<br>width: 300px;<br>border: 3px solid #73AD21;<br>}</code>
+        <code><span class="selector">div.fixed</span> {<br>
+          <span class="indent"><span class="property">position</span>: <span class="value">fixed</span>;<br></span>
+          <span class="indent"><span class="property">bottom</span>: <span class="number">0</span>;<br></span>
+          <span class="indent"><span class="property">right</span>: <span class="number">0</span>;<br></span>
+          <span class="indent"><span class="property">width</span>: <span class="number">300px</span>;<br></span>
+          <span class="indent"><span class="property">border</span>: <span class="number">3px</span> <span class="value">solid #73AD21</span>;</span>
+          <br>}
+        </code>
         <h3>position: absolute;</h3>
         <p>An element with <code>position: absolute;</code> is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed).</p>
         <p>However; if an absolute positioned element has no positioned ancestors, it uses the document body, and moves along with page scrolling.</p>
         <p><strong>Note:</strong> Absolute positioned elements are removed from the normal flow, and can overlap elements.</p>
-        <code>div.absolute {<br>position: absolute;<br>top: 80px;<br>right: 0;<br>width: 200px;<br>height: 100px;<br>border: 3px solid #73AD21;<br>}</code>
+        <code><span class="selector">div.absolute</span> {<br>
+          <span class="indent"><span class="property">position</span>: <span class="value">absolute</span>;</span><br>
+          <span class="indent"><span class="property">top</span>: <span class="number">80px</span>;</span><br>
+          <span class="indent"><span class="property">right</span>: <span class="number">0</span>;</span><br>
+          <span class="indent"><span class="property">width</span>: <span class="number">200px</span>;</span><br>
+          <span class="indent"><span class="property">height</span>: <span class="number">100px</span>;</span><br>
+          <span class="indent"><span class="property">border</span>: <span class="number">3px</span> <span class="value">solid #73AD21</span>;</span><br>}
+        </code>
         <h3>position: sticky;</h3>
         <p>HTML elements are positioned static by default.</p>
         <p>An element with <code>position: sticky;</code> is positioned based on the user's scroll position.</p>
         <p>A sticky element toggles between <code>relative</code> and <code>fixed</code>, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed).</p>
-        <code>div.sticky {<br>position: -webkit-sticky; /* Safari */<br>position: sticky;<br>top: 0;<br>background-color: green;<br>border: 2px solid #4CAF50;<br>}</code>
+        <code><span class="selector">div.sticky</span> {<br>
+          <span class="indent"><span class="property">position</span>: -webkit-sticky; <span class="comment">/* Safari */</span></span><br>
+          <span class="indent"><span class="property">position</span>: <span class="value">sticky</span>;</span><br>
+          <span class="indent"><span class="property">top</span>: <span class="number">0</span>;</span><br>
+          <span class="indent"><span class="property">background-color</span>: <span class="value">green</span>;</span><br>
+          <span class="indent"><span class="property">border</span>: <span class="number">2px</span> <span class="value">solid #4CAF50</span>;</span><br>}
+        </code>
       </section>
       <section id="flexbox" class="main-section">
         <header><h2>Flexbox</h2></header>
