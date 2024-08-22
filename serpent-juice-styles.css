@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+}
+
+.trade-winds-regular {
+  font-family: "Trade Winds", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  /* will need to set margin lower than header */
+  width: 100%;
+  background-color: #FCEA23;
+  font-family: sans-serif;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background: linear-gradient(90deg, #007475, #942360);
+}
+
+#header-img {
+  width: 10%;
+  max-width: 150px;
+}
+
+#title {
+  color: #FCEA23;
+  font-size: 2rem;
+}
+
+.pirate {
+  font-family: "Trade Winds", fantasy;
+}
+
+nav a {
+  color: #FFFFFD;
+  text-decoration: none;
+  padding: 0 1rem;
+}
+
+main, footer {
+  width: 90%;
+  min-width: 400px;
+  max-width: 1000px;
+  margin: auto auto;
+  padding: 10px 15px;
+  background-color: lemonchiffon;
+}
+
+blockquote {
+  background: linear-gradient(90deg, rgba(0, 116, 116, 0.3), rgba(148, 35, 95, 0.3));
+  padding: 20px;
+  width: 75%;
+  min-width: 300px;
+  margin: 10px auto;
+  border: 2px dashed black;
+  font-weight: 600;
+}
+
+.right {
+  float: right;
+  margin-bottom: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}
+
+.tiers-wrap {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto auto auto;
+  justify-content: space-between;
+  align-content: space-evenly;
+}
+
+.tier {
+  border: 5px groove #007475;
+  background-color: #942360;
+  color: #FFFFFD;
+}
+
+.pack {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 5px;
+}
+
+.detail {
+  padding: 5px;
+  text-align: center;
+}
+
+.form-container {
+  border: 5px groove #007475;
+  width: 90%;
+  min-width: 300px;
+  margin: 1rem auto 1rem auto;
+}
+
+.form-container h2, .form-container p {
+  text-align: center;
+}
+
+label {
+  display: block;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 40%;
+  margin: 1em auto;
+  height: 2em;
+  font-size: 1.1rem;
+  background-color: #FCEA23;
+  min-width: 300px;
+}
+
+.small {
+  font-size: 0.7rem;
+}
+
+@media (max-width: 600px) {
+  .tiers-wrap {
+    grid-template-columns: auto;
+  }
+}
+
+/* color palette: 
+{
+"Aureolin":"FCEA23", - yellow
+"Tiffany Blue":"A6D6D1", - lighter teal
+"Caribbean Current":"007475", - darker teal
+"Murrey":"942360", - purple
+"Baby powder":"FFFFFD" - white
+} */
