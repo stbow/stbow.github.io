@@ -68,9 +68,23 @@ blockquote {
   font-weight: 600;
 }
 
+#quotes {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+}
+
+#quotes img {
+  grid-column: 2;
+  grid-row: 1 / span 5;
+}
+
 .right {
   float: right;
-  margin-bottom: 20px;
+}
+
+li {
+  padding: 0.3em;
 }
 
 .bold {
