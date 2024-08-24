@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Lato", sans-serif;
+}
+
+nav {
+  width: 100%;
+  text-align: right;
+  padding: 0.5em;
+  background-color: #03045eff;
+  position: fixed;
+  top: 0;
+}
+
+nav a {
+  color: #ff9e00ff;
+  text-decoration: none;
+  padding: 1em;
+}
+
+#welcome-section {
+  font-family: "Nothing You Could Do", cursive;
+  text-align: center;
+  background-color: #023e8aff;
+  color: white;
+  font-size: 3em;
+  padding: 1em;
+}
+
+#projects {
+  background-color: #00b4d888;
+  text-align: center;
+  color: #03045eff;
+  padding: 25px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
+.project-tile {
+  text-align: center;
+  color: #03045eff;
+  padding: 25px;
+}
+
+.project-tile img {
+  width: 90%;
+  max-width: 500px;
+}
+
+#contact {
+  background-color: #ff9e0088;
+  text-align: center;
+  color: #023e8aff;
+  padding: 1em;
+}
+
+#contact h2 {
+  padding: 12px;
+}
+
+#contact a {
+  color: #023e8aff;
+  text-decoration: none;
+  padding: 1em 1em;
+}
+
+@media (max-width: 800px) {
+  .project-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .project-tile img {
+    width: 45vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-tile img {
+    width: 90vw;
+  }
+}
+
+/* -- COLORS --*/
+/* CSS HEX
+  --orange-pantone: #ff5400ff;
+  --pumpkin: #ff6d00ff;
+  --ut-orange: #ff8500ff;
+  --princeton-orange: #ff9100ff;
+  --orange-peel: #ff9e00ff;
+  --pacific-cyan: #00b4d8ff;
+  --blue-green: #0096c7ff;
+  --honolulu-blue: #0077b6ff;
+  --marian-blue: #023e8aff;
+  --federal-blue: #03045eff;
+
+  CSS HSL 
+  --orange-pantone: hsla(20, 100%, 50%, 1);
+  --pumpkin: hsla(26, 100%, 50%, 1);
+  --ut-orange: hsla(31, 100%, 50%, 1);
+  --princeton-orange: hsla(34, 100%, 50%, 1);
+  --orange-peel: hsla(37, 100%, 50%, 1);
+  --pacific-cyan: hsla(190, 100%, 42%, 1);
+  --blue-green: hsla(195, 100%, 39%, 1);
+  --honolulu-blue: hsla(201, 100%, 36%, 1);
+  --marian-blue: hsla(214, 97%, 27%, 1);
+  --federal-blue: hsla(239, 94%, 19%, 1);
+  */

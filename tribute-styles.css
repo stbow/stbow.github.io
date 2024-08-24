@@ -1,0 +1,36 @@
+body {
+  font-family: Garamond, serif;
+  background-color: lightgray;
+}
+
+header {
+  text-align: center;
+  background-color: #120A8F;
+  color: gold;
+  padding: 2px;
+  margin: 0;
+}
+
+#img-div {
+  width: 50%;
+  margin: 10px auto;
+  display: block;
+  text-align: center;
+  border: 1px solid;
+}
+
+#image {
+  object-fit: cover;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  align: center;
+}
+
+img {
+  display: block;
+}
+
+footer {
+  text-align: center;
+}
