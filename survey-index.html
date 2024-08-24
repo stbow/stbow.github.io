@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta />
+    <title></title>
+    <link rel="stylesheet" href="survey-styles.css" />
+  </head>
+  <body>
+    <h1 id="title" >Friendship Survey</h1>
+    <p id="description">Please complete the survey below to express how you perceive our relationship and to strengthen our friendship.</p>
+    <form id="survey-form" method="post">
+      <fieldset>
+        <label for="name" id="name-label">Name: </label>
+        <input id="name" name="name" type="text" placeholder="Your name" required/>
+        <label for="email" id="email-label">Email: </label>
+        <input id="email" name="email" type="email" placeholder="Your email" required/>
+      </fieldset>
+      <fieldset>
+        <legend>Who’s more likely to survive a zombie apocalypse, you or me? (radio)</legend>
+        <label for="me"><input id="me" class="inline" type="radio" name="zombie" value="Me, obviously" checked /> Me, obviously</label>
+        <label for="you"><input id="you" class="inline" type="radio" name="zombie" value="You, no doubt" /> You, no doubt</label>
+        <label for="both"><input id="both" class="inline" type="radio" name="zombie" value="We’d team up and rule the zombie world" /> We’d team up and rule the zombie world</label>
+        <label for="neither"><input id="neither" class="inline" type="radio" name="zombie" value="Neither—we’d both be zombie chow" /> Neither—we’d both be zombie chow</label>
+      </fieldset>
+        <label for="number" id="number-label">On a scale from 1-5 (5 being highest), how likely are you to recommend our friendship to others? (number field)</label>
+        <input id="number" type="number" name="number" min="1" max="5" placeholder="1 to 5" />
+        <label for="dropdown">If our friendship were a movie, what genre would it be?</label>
+        <select id="dropdown" name="movie">
+          <option value="1">Comedy</option>
+          <option value="2">Action/Adventure</option>
+          <option value="3">Sci-Fi</option>
+          <option value="4">Horror</option>
+          <option value="5">Romantic Comedy</option>
+          <option value="6">Documentary</option>
+        </select>
+      <fieldset>
+        <legend>Which activities should we do more? (checkbox)</legend>
+        <label for="eat"><input id="eat" class="inline" type="checkbox" name="eat" value="Going out to eat" /> Going out to eat</label>
+        <label for="tv"><input id="tv" class="inline" type="checkbox" name="tv" value="Watching movies/TV shows" /> Watching movies/TV shows</label>
+        <label for="games"><input id="games" class="inline" type="checkbox" name="games" value="Playing video games" /> Playing video games</label>
+        <label for="travel"><input id="travel" class="inline" type="checkbox" name="travel" value="Traveling" /> Traveling</label>
+        <label for="talking"><input id="talking" class="inline" type="checkbox" name="" value="Talking or catching up" /> Talking or catching up</label>
+        <label for="exercise"><input id="exercise" class="inline" type="checkbox" name="" value="Exercising or playing sports" /> Exercising or playing sports</label>
+        <label for="events"><input id="events" class="inline" type="checkbox" name="" value="Attending events or concerts" /> Attending events or concerts</label>
+      </fieldset>
+      <label for="">If we were superheroes, what would our superpowers be?
+        <textarea id="" name="" rows="3" cols="30" placeholder="Our superpowers would be...">
+        </textarea>
+      </label>
+      <input id="submit" type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
