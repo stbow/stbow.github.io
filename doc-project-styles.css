@@ -19,6 +19,52 @@ nav header {
   padding-left: 8px;
 }
 
+nav ul {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: white;
+}
+
+nav ul li {
+  display: block;
+  margin: 4px;
+  padding: 6px;
+}
+
+li a, .dropbtn {
+  color: black;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: lightblue;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 6px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 main {
   margin-left: 250px;
 }
@@ -65,6 +111,28 @@ img {
 
 .term {
   font-style: italic;
+}
+
+.props-table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 80%;
+  border: 1px solid #000000;
+}
+
+.props-table .col1 {
+  width: 30%;
+}
+
+.props-table tr {
+  border-bottom: 1px solid #000000;
+}
+
+.props-table td,.props-table th {
+  padding: 8px 8px;
+  text-align:left;
+  vertical-align:top;
 }
 
 footer {
