@@ -5,3 +5,14 @@
 html {
   font-family: sans-serif;
 }
+
+.gallery-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.gallery-wrapper figure img {
+  max-width: 400px;
+}
