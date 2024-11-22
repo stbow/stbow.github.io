@@ -1,0 +1,49 @@
+body {
+  background-color: #74A57F;
+}
+
+main {
+  text-align: center;
+  width: 75%;
+  min-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #E4C5AF;
+  font-size: 1.5em;
+  background-color: #074F57;
+  padding: 2em;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+button {
+  background-color: #E4C5AF;
+  color: #074F57;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #BDA391;
+  color: #3E5944;
+  cursor: pointer;
+}
+
+input {
+  padding: 5px;
+  width: 50%;
+}
+
+#info {
+  background-color: #077187;
+  padding: 10px;
+  border-radius: 15px;
+  margin-top: 1em;
+}
+
+#result {
+  margin-top: 1em;
+}
