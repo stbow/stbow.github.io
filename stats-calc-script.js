@@ -1,15 +1,3 @@
-/* TEST CODE FOR CALCULATING MEDIAN
-const testArr1 = [1, 2, 3, 4, 5];
-const testArr2 = [1, 2, 3, 4, 5, 6];
-const oddListMedian = testArr1[Math.floor(testArr1.length / 2)];
-console.log(oddListMedian);
-const isEven = testArr2.length % 2 === 0;
-console.log(isEven);
-const evenListMedian = getMean([testArr2[testArr2.length / 2 - 1], testArr2[testArr2.length / 2]]);
-console.log(evenListMedian);
- */
-
-
 const getMean = (array) => array.reduce((acc, el) => acc + el, 0) / array.length;
 
 const getMedian = (array) => {
@@ -62,7 +50,7 @@ const calculate = () => {
   const value = document.querySelector("#numbers").value;
   const array = value.split(/,\s*/g);
   const numbers = array.map(el => Number(el)).filter(el => !isNaN(el));
-  
+
   const mean = getMean(numbers);
   const median = getMedian(numbers);
   const mode = getMode(numbers);
@@ -77,3 +65,14 @@ const calculate = () => {
   document.querySelector("#variance").textContent = variance;
 
 }
+
+/* TEST CODE FOR CALCULATING MEDIAN
+const testArr1 = [1, 2, 3, 4, 5];
+const testArr2 = [1, 2, 3, 4, 5, 6];
+const oddListMedian = testArr1[Math.floor(testArr1.length / 2)];
+console.log(oddListMedian);
+const isEven = testArr2.length % 2 === 0;
+console.log(isEven);
+const evenListMedian = getMean([testArr2[testArr2.length / 2 - 1], testArr2[testArr2.length / 2]]);
+console.log(evenListMedian);
+ */
