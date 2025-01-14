@@ -1,4 +1,16 @@
-# Array Tracker
+# CYOA Game
+
+## Choose Your Own Adventure Game
+
+Story was generated using ChatGPT and edited by stbow. HTML and JavaScript implementation by stbow.
+
+## dev notes
+
+Link to image for knight: https://www.wannapik.com/media/W1siZiIsIjIwMTYvMDgvMjIvOTMyZnJmMmxjZV84NW1pYnp3cHhwX3Blb3A0MTA1LnBuZyJdXQ/967adea74e40c46c/85mibzwpxp_peop4105.png
+
+Future development: consider adding image to page.
+
+## Array Tracker
 
 | Scene ID | Array Index |
 |----------|-------------|
