@@ -41,12 +41,12 @@ button {
   display: none;
 }
 
-@media (max-width: 599px) {
-  main { grid-template-columns: 300px; }
+@media only screen and (max-width: 899px) {
+  main { grid-template-columns: 300px 300px;}
 }
 
-@media (max-width: 899px) {
-  main { grid-template-columns: 300px 300px;}
+@media only screen and (max-width: 599px) {
+  main { grid-template-columns: 300px; }
 }
 
 /* .disabled {
