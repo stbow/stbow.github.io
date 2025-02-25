@@ -140,7 +140,7 @@ var research7 = {
   title: "New hull materials ",
   priceTag: "(200,000 kürler)",
   description: "Improves speed and durability of ships; increases revenue by 15%",
-  trigger: function() {return fleetCount >= 3},
+  trigger: function() {return ships >= 3},
   uses: 1,
   //cost: , function returns TRUE when you can afford it (changes style)
   flag: 0,
@@ -148,7 +148,7 @@ var research7 = {
   effect: function() {
     research7.flag = 1;
     //displayMessage("")
-    balance -= 20000;
+    balance -= 200000;
     fleetMult += 0.15;
     research7.element.parentNode.removeChild(research7.element);
     let index = activeResearch.indexOf(research7);
@@ -163,7 +163,7 @@ var research8 = {
   title: "Research fluid dynamics ",
   priceTag: "(300,000 kürler)",
   description: "Ships are faster; increases revenue by 35%",
-  trigger: function() {return fleetCount >= 6},
+  trigger: function() {return ships >= 6},
   uses: 1,
   //cost: , function returns TRUE when you can afford it (changes style)
   flag: 0,
@@ -186,7 +186,7 @@ var research9 = {
   title: "Paint hulls ",
   priceTag: "(75,000 kürler per ship)",
   description: "No impact on sailing, but our ships look better than any others on the ocean!",
-  trigger: function() {return fleetCount >= 10},
+  trigger: function() {return ships >= 10},
   uses: 1,
   //cost: , function returns TRUE when you can afford it (changes style)
   flag: 0,

@@ -18,7 +18,7 @@ header {
 
 main {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 300px 275px 275px;
 }
 
 button {
@@ -39,6 +39,14 @@ button {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 599px) {
+  main { grid-template-columns: 300px; }
+}
+
+@media (max-width: 899px) {
+  main { grid-template-columns: 300px 300px;}
 }
 
 /* .disabled {
