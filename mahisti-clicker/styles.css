@@ -1,0 +1,46 @@
+/* hex code for 
+ultramarine blue: 120A8F 
+gold FFD700
+*/
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #120A8f;
+  color: white;
+  font-family: 'Garamond';
+}
+
+header {
+  color: #FFD700;
+  font-family: 'Brush Script MT';
+}
+
+main {
+  display: grid;
+  grid-template-columns: 275px 275px 275px;
+}
+
+button {
+  padding: 4px;
+  background-color: #FFD700;
+  font-family: 'Garamond';
+  border-color: #FFEA70;
+  border-radius: 2px;
+}
+
+.research-button {
+  background-color: #FFD700;
+  display: block;
+  height: 60px;
+  width: 275px;
+  margin-bottom: 6px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* .disabled {
+  opacity: 0.6;
+} */

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahisti Clicker</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+			<h1>Mahisti Clicker</h1>
+		</header>
+    <main>
+      <div id="col1">
+        <p>Money: <span id="balance">0</span> k&#252;rler</p>
+        <p id="currency" class="hidden"><span id="altinlar">0</span> altınlar, <span id="yiralar">0</span> yiralar, and <span id="kurler">0</span> kürler</p>
+        <button id="sell">Sell for 1 k&#252;r</button>
+        <div id="employees-div" class="hidden">
+          <p>Employees: <span id="employees-count">0</span></p>
+          <p>New employee: <span id="employee-cost">5</span> k&#252;rler</p>
+          <button id="hire">Hire an employee</button>
+        </div>
+        <div id="shops-div" class="hidden">
+          <p>Shops: <span id="shops-count">0</span></p>
+          <p>New shop: <span id="shop-cost">1000</span> k&#252;rler</p>
+          <button id="buy-shop">Open a shop</button>
+        </div>
+        <div id="fleet-div" class="hidden">
+          <p>Fleet: <span id="fleet-count">0</span> ships</p>
+          <p>New ship: <span id="fleet-cost">100000</span> k&#252;rler</p>
+          <button id="buy-ship">Add new ship to fleet</button>
+        </div>
+      </div>
+      <div id="col2">
+        <h3>Research</h3>
+        <div id="research-list"></div>
+      </div>
+      <div id="col3" class="hidden">
+        
+      </div>
+    </main>
+    <footer></footer>
+    <script src="./script.js"></script>
+    <script src="./research.js"></script>
+  </body>
+</html>
