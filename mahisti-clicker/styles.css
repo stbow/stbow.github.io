@@ -18,7 +18,7 @@ header {
 
 main {
   display: grid;
-  grid-template-columns: 275px 275px 275px;
+  grid-template-columns: auto auto auto;
 }
 
 button {
