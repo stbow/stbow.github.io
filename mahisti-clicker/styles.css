@@ -28,6 +28,10 @@ header, h1, h2, h3 {
   font-family: 'UnderWorld', 'Brush Script MT';
 }
 
+header p {
+  font-family: 'Courier New', Courier, monospace;
+}
+
 main {
   display: grid;
   grid-template-columns: 300px 275px 275px;
