@@ -194,7 +194,7 @@ var research9 = {
   effect: function() {
     research9.flag = 1;
     //displayMessage("")
-    balance -= 75000 * fleetCount;
+    balance -= 75000 * ships;
     research9.element.parentNode.removeChild(research9.element);
     let index = activeResearch.indexOf(research9);
     activeResearch.splice(index, 1);

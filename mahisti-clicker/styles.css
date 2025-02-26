@@ -5,15 +5,27 @@ gold FFD700
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: 'UnderWorld';
+  src: url('UnderWorld.eot');
+  src: url('UnderWorld.eot?#iefix') format('embedded-opentype'),
+      url('UnderWorld.woff2') format('woff2'),
+      url('UnderWorld.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   background-color: #120A8f;
   color: white;
   font-family: 'Garamond';
 }
 
-header {
+header, h1, h2, h3 {
   color: #FFD700;
-  font-family: 'Brush Script MT';
+  font-family: 'UnderWorld', 'Brush Script MT';
 }
 
 main {
