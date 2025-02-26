@@ -204,7 +204,7 @@ var research9 = {
   
 research.push(research9);
 
-/* var research10 = {
+var research10 = {
   id: "researchButton10",
   title: "Open gold mines ",
   priceTag: "",
@@ -222,9 +222,9 @@ research.push(research9);
     let index = activeResearch.indexOf(research10);
     activeResearch.splice(index, 1);
   }
-} */
+}
   
-//research.push(research10);
+research.push(research10);
 
 /* var researchX = {
   id: "researchButtonX",
