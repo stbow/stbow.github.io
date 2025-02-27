@@ -32,12 +32,12 @@ var ships = 0;
 var mines = 0;
 var nextEmployee = 5;
 var nextShop = 1080;
-var nextShip = 99000;
-var nextMine = 9000000;
+var nextShip = 43200;
+var nextMine = 1512000;
 var empMult = 1;
 var shopsMult = 120;
-var fleetMult = 14400;
-var minesMult = 1800000;
+var fleetMult = 5040;
+var minesMult = 180000;
 
 sell.onclick = sellItem;
 hire.onclick = hireEmployee;
@@ -47,7 +47,7 @@ buyMine.onclick = newMine;
 
 function sellItem() {
   balance++;
-  balanceText.innerText = balance;
+  balanceText.innerText = Math.floor(balance);
   convertCurrency(balance);
 }
 
@@ -55,7 +55,7 @@ function hireEmployee() {
   if (balance >= nextEmployee) {
     employees++;
     balance -= nextEmployee;
-    balanceText.innerText = balance;
+    balanceText.innerText = Math.floor(balance);
     employeesCount.innerText = employees;
     nextEmployee = Math.floor(5 * Math.pow(1.2,employees));
     employeeCost.innerText = nextEmployee;
@@ -67,7 +67,7 @@ function newShop() {
   if (balance >= nextShop) {
     shops++;
     balance -= nextShop;
-    balanceText.innerText = balance;
+    balanceText.innerText = Math.floor(balance);
     shopsCount.innerText = shops;
     nextShop = Math.floor(1080 * Math.pow(1.1,shops));
     shopCost.innerText = nextShop;
@@ -79,9 +79,9 @@ function newShip() {
   if (balance >= nextShip) {
     ships++;
     balance -= nextShip;
-    balanceText.innerText = balance;
+    balanceText.innerText = Math.floor(balance);
     fleetCount.innerText = ships;
-    nextShip = Math.floor(99000 * Math.pow(1.1,ships));
+    nextShip = Math.floor(43200 * Math.pow(1.1,ships));
     fleetCost.innerText = nextShip;
     convertCurrency(balance);
   }
@@ -91,9 +91,9 @@ function newMine() {
   if (balance >= nextMine) {
     mines++;
     balance -= nextMine;
-    balanceText.innerText = balance;
+    balanceText.innerText = Math.floor(balance);
     minesCount.innerText = mines;
-    nextMine = Math.floor(9000000 * Math.pow(1.1,mines));
+    nextMine = Math.floor(1512000 * Math.pow(1.1,mines));
     minesCost.innerText = nextMine;
     convertCurrency(balance);
   }
@@ -114,7 +114,12 @@ window.setInterval(function() {
 window.setInterval(function() {
   balance += fleetMult * ships;
   balanceText.innerText = Math.floor(balance);
-}, 45000);
+}, 20000);
+
+window.setInterval(function() {
+  balance += minesMult * mines;
+  balanceText.innerText = Math.floor(balance);
+}, 60000)
 
 function manageResearch() {
   for(let i=0; i < research.length; i++) {
