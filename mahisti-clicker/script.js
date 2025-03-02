@@ -189,10 +189,10 @@ function refresh() {
   minesCost.innerText = nextMine;
 
   if (research1.flag === 1) employeesDiv.classList.remove("hidden");
-  if (research3.flag === 1) shopsDiv.classList.remove("hidden");
+  if (research5.flag === 1) shopsDiv.classList.remove("hidden");
   if (research4.flag === 1) currency.classList.remove("hidden");
-  if (research6.flag === 1) fleetDiv.classList.remove("hidden");
-  if (research10.flag === 1) minesDiv.classList.remove("hidden");
+  if (research11.flag === 1) fleetDiv.classList.remove("hidden");
+  if (research17.flag === 1) minesDiv.classList.remove("hidden");
 }
 
 function save() {
@@ -229,7 +229,6 @@ function save() {
   localStorage.setItem("saveResearchUses",JSON.stringify(researchUses));
   localStorage.setItem("saveResearchFlags", JSON.stringify(researchFlags));
   localStorage.setItem("saveResearchActive", JSON.stringify(researchActive));
-  console.log(saveData);
 }
 
 function deleteSave() {
@@ -285,7 +284,6 @@ window.setInterval(function() {
 window.setInterval(function() {
   balance += shopsMult * shops;
   balanceText.innerText = Math.floor(balance);
-  save();
 }, 5000);
 
 window.setInterval(function() {
@@ -296,4 +294,5 @@ window.setInterval(function() {
 window.setInterval(function() {
   balance += minesMult * mines;
   balanceText.innerText = Math.floor(balance);
+  save();
 }, 60000)
