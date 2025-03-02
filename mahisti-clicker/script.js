@@ -1,3 +1,5 @@
+const saveBtn = document.getElementById("save-btn");
+const deleteBtn = document.getElementById("delete-btn");
 const balanceText = document.getElementById("balance");
 const col1 = document.getElementById("col1");
 const col2 = document.getElementById("col2");
@@ -25,6 +27,8 @@ const buyShop = document.getElementById("buy-shop");
 const buyShip = document.getElementById("buy-ship");
 const buyMine = document.getElementById("buy-mine");
 
+var savegame;
+
 var balance = 0;
 var employees = 0;
 var shops = 0;
@@ -39,6 +43,8 @@ var shopsMult = 120;
 var fleetMult = 5040;
 var minesMult = 180000;
 
+saveBtn.onclick = save;
+deleteBtn.onclick = deleteSave;
 sell.onclick = sellItem;
 hire.onclick = hireEmployee;
 buyShop.onclick = newShop;
@@ -99,6 +105,35 @@ function newMine() {
   }
 }
 
+window.onload = function() {
+  if (localStorage.getItem("saveData") !== null) {
+    console.log("save data exists in local storage");
+    savegame = JSON.parse(localStorage.getItem("saveData"));
+    console.log("onload function. savegame = ", savegame);
+    console.log("defining variables...")
+    if (typeof savegame.balance !== "undefined") balance = savegame.balance;
+    if (typeof savegame.employees !== "undefined") employees = savegame.employees;
+    if (typeof savegame.shops !== "undefined") shops = savegame.shops;
+    if (typeof savegame.ships !== "undefined") ships = savegame.ships;
+    if (typeof savegame.mines !== "undefined") mines = savegame.mines;
+    if (typeof savegame.nextEmployee !== "undefined") nextEmployee = savegame.nextEmployee;
+    if (typeof savegame.nextShop !== "undefined") nextShop = savegame.nextShop;
+    if (typeof savegame.nextShip !== "undefined") nextShip = savegame.nextShip;
+    if (typeof savegame.nextMine !== "undefined") nextMine = savegame.nextMine;
+    if (typeof savegame.empMult !== "undefined") empMult = savegame.empMult;
+    if (typeof savegame.shopsMult !== "undefined") shopsMult = savegame.shopsMult;
+    if (typeof savegame.fleetMult !== "undefined") fleetMult = savegame.fleetMult;
+    if (typeof savegame.minesMult !== "undefined") minesMult = savegame.minesMult;
+    //if (typeof savegame.prestige !== "undefined") prestige = savegame.prestige;
+    console.log("saved all variables. everything should be updated");
+  } else {
+    console.log("save data does not exist in local storage");
+    return;
+  }
+}
+
+//FOR LATER - initial definition for variables could use ternary operator instead of defining and then redefining
+
 window.setInterval(function() {
   balance += empMult * employees;
   balanceText.innerText = Math.floor(balance);
@@ -156,6 +191,31 @@ function displayResearch(project){
 
   var description = document.createTextNode(project.description);
   project.element.appendChild(description);
+}
+
+function save() {
+  var saveData = {
+    balance: balance,
+    employees: employees,
+    shops: shops,
+    ships: ships,
+    mines: mines,
+    nextEmployee: nextEmployee,
+    nextShop: nextShop,
+    nextShip: nextShip,
+    nextMine: nextMine,
+    empMult: empMult,
+    shopsMult: shopsMult,
+    fleetMult: fleetMult,
+    minesMult: minesMult,
+    //prestige: prestige
+  }
+  localStorage.setItem("saveData",JSON.stringify(saveData));
+  console.log(saveData);
+}
+
+function deleteSave() {
+  localStorage.removeItem("saveData");
 }
 
 function convertCurrency(num) {

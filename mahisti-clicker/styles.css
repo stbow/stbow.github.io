@@ -23,9 +23,17 @@ body {
   font-family: 'Garamond';
 }
 
+header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 header, h1, h2, h3 {
   color: #FFD700;
   font-family: 'UnderWorld', 'Brush Script MT';
+  margin: 0;
 }
 
 .version {
@@ -45,6 +53,11 @@ button {
   font-family: 'Garamond';
   border-color: #FFEA70;
   border-radius: 2px;
+}
+
+h3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .research-button {

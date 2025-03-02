@@ -81,6 +81,7 @@ var research4 = {
   effect: function() {
     research4.flag = 1;
     //displayMessage("")
+    convertCurrency(balance);
     currency.classList.remove("hidden");
     research4.element.parentNode.removeChild(research4.element);
     let index = activeResearch.indexOf(research4);
