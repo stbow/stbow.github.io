@@ -122,8 +122,8 @@ var research6 = {
   effect: function() {
     research6.flag = 1;
     balance -= 2520;
-    empMult += 0.1;
-    shopsMult += 0.1;
+    empMult += 0.2;
+    shopsMult += 0.2;
     research6.element.parentNode.removeChild(research6.element);
     let index = activeResearch.indexOf(research6);
     activeResearch.splice(index, 1);
@@ -167,7 +167,7 @@ var research8 = {
   effect: function() {
     research8.flag = 1;
     balance -= 12960;
-    shopsMult += 0.2
+    shopsMult += 0.3;
     research8.element.parentNode.removeChild(research8.element);
     let index = activeResearch.indexOf(research8);
     activeResearch.splice(index, 1);
@@ -189,8 +189,8 @@ var research9 = {
   effect: function() {
     research9.flag = 1;
     balance -= 17280;
-    empMult += 0.1;
-    shopsMult += 0.1;
+    empMult += 0.25;
+    shopsMult += 0.4;
     research9.element.parentNode.removeChild(research9.element);
     let index = activeResearch.indexOf(research9);
     activeResearch.splice(index, 1);
@@ -255,9 +255,9 @@ var research12 = {
   effect: function() {
     research12.flag = 1;
     balance -= 75600;
-    empMult += 0.1;
-    shopsMult += 0.2;
-    fleetMult += 0.2;
+    empMult += 0.3;
+    shopsMult += 0.5;
+    fleetMult += 0.5;
     research12.element.parentNode.removeChild(research12.element);
     let index = activeResearch.indexOf(research12);
     activeResearch.splice(index, 1);
@@ -270,7 +270,7 @@ var research13 = {
   id: "researchButton13",
   title: "New hull materials ",
   priceTag: "(275 altınlar)",
-  description: "Improves speed and durability of ships; increases revenue by 15%",
+  description: "Improves speed and durability of ships; increases revenue by 30%",
   trigger: function() {return ships >= 3},
   uses: 1,
   cost: function() {return balance >= 99000},
@@ -279,7 +279,7 @@ var research13 = {
   effect: function() {
     research13.flag = 1;
     balance -= 99000;
-    fleetMult += 0.15;
+    fleetMult += 0.3;
     research13.element.parentNode.removeChild(research13.element);
     let index = activeResearch.indexOf(research13);
     activeResearch.splice(index, 1);
@@ -292,7 +292,7 @@ var research14 = {
   id: "researchButton14",
   title: "Research fluid dynamics ",
   priceTag: "(425 altınlar)",
-  description: "Ships are faster; increases revenue by 35%",
+  description: "Ships are faster; increases revenue by 50%",
   trigger: function() {return ships >= 6},
   uses: 1,
   cost: function() {return balance >= 153000},
@@ -301,7 +301,7 @@ var research14 = {
   effect: function() {
     research14.flag = 1;
     balance -= 153000;
-    fleetMult += 0.35;
+    fleetMult += 0.5;
     research14.element.parentNode.removeChild(research14.element);
     let index = activeResearch.indexOf(research14);
     activeResearch.splice(index, 1);
@@ -323,9 +323,9 @@ var research15 = {
   effect: function() {
     research15.flag = 1;
     balance -= 208800;
-    empMult += 0.02;
-    shopsMult += 0.05;
-    fleetMult += 0.15;
+    empMult += 0.2;
+    shopsMult += 0.3;
+    fleetMult += 0.5;
     research15.element.parentNode.removeChild(research15.element);
     let index = activeResearch.indexOf(research15);
     activeResearch.splice(index, 1);
@@ -437,7 +437,7 @@ var research20 = {
   effect: function() {
     research20.flag = 1;
     balance -= 8640000;
-    minesMult += 0.25
+    minesMult += 0.25;
     research20.element.parentNode.removeChild(research20.element);
     let index = activeResearch.indexOf(research20);
     activeResearch.splice(index, 1);
