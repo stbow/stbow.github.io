@@ -1,13 +1,21 @@
 # notes
 
 ## change log
+
+- v2
+	- new research options
+	- auto save every minute
+- v1.5
+	- deactivate research buttons until user can afford them
 - v1.4 - save to localStorage
   - set up global variables sheet
   - load() function that loads in the save data
   - refresh() that updates the webpage and the arrays for research
-- update html and buy functions to display in altinlar instead of kurler
+- future
+	- update html and buy functions to display in altinlar instead of kurler
 
 ## game structure
+
 currency - kurler, yiralar, altinlar   
 	30 kurler in a yira, 12 yiralar in an altin  
 mahisti family  
@@ -25,6 +33,7 @@ once you've hired all the kahyalar, option to Take Over Arast
 loans to other countries - costs $, brings in interest  
 
 improve the country - education, social improvements, infrastructure, etc  
+pirate pact during this phase  
 
 end game - own the whole world  
 
