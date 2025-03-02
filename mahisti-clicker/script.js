@@ -48,51 +48,47 @@ function sellItem() {
 }
 
 function hireEmployee() {
-  if (balance >= nextEmployee) {
-    employees++;
-    balance -= nextEmployee;
-    balanceText.innerText = Math.floor(balance);
-    employeesCount.innerText = employees;
-    nextEmployee = Math.floor(5 * Math.pow(1.2,employees));
-    employeeCost.innerText = nextEmployee;
-    convertCurrency(balance);
-  }
+  employees++;
+  balance -= nextEmployee;
+  balanceText.innerText = Math.floor(balance);
+  employeesCount.innerText = employees;
+  nextEmployee = Math.floor(5 * Math.pow(1.2,employees));
+  employeeCost.innerText = nextEmployee;
+  convertCurrency(balance);
+  checkButtons();
 }
 
 function newShop() {
-  if (balance >= nextShop) {
-    shops++;
-    balance -= nextShop;
-    balanceText.innerText = Math.floor(balance);
-    shopsCount.innerText = shops;
-    nextShop = Math.floor(1080 * Math.pow(1.1,shops));
-    shopCost.innerText = nextShop;
-    convertCurrency(balance);
-  }
+  shops++;
+  balance -= nextShop;
+  balanceText.innerText = Math.floor(balance);
+  shopsCount.innerText = shops;
+  nextShop = Math.floor(1080 * Math.pow(1.1,shops));
+  shopCost.innerText = nextShop;
+  convertCurrency(balance);
+  checkButtons();
 }
 
 function newShip() {
-  if (balance >= nextShip) {
-    ships++;
-    balance -= nextShip;
-    balanceText.innerText = Math.floor(balance);
-    fleetCount.innerText = ships;
-    nextShip = Math.floor(43200 * Math.pow(1.1,ships));
-    fleetCost.innerText = nextShip;
-    convertCurrency(balance);
-  }
+  ships++;
+  balance -= nextShip;
+  balanceText.innerText = Math.floor(balance);
+  fleetCount.innerText = ships;
+  nextShip = Math.floor(43200 * Math.pow(1.1,ships));
+  fleetCost.innerText = nextShip;
+  convertCurrency(balance);
+  checkButtons();
 }
 
 function newMine() {
-  if (balance >= nextMine) {
-    mines++;
-    balance -= nextMine;
-    balanceText.innerText = Math.floor(balance);
-    minesCount.innerText = mines;
-    nextMine = Math.floor(1512000 * Math.pow(1.1,mines));
-    minesCost.innerText = nextMine;
-    convertCurrency(balance);
-  }
+  mines++;
+  balance -= nextMine;
+  balanceText.innerText = Math.floor(balance);
+  minesCount.innerText = mines;
+  nextMine = Math.floor(1512000 * Math.pow(1.1,mines));
+  minesCost.innerText = nextMine;
+  convertCurrency(balance);
+  checkButtons();
 }
 
 // PAGE UPDATING --------------------------
@@ -103,6 +99,29 @@ function convertCurrency(num) {
   kurler.innerText = Math.floor(num % 360 % 30);
 }
 
+function checkButtons() {
+  if (balance < nextEmployee) {
+    hire.disabled = true;
+  } else {
+    hire.disabled = false;
+  }
+  if (balance < nextShop) {
+    buyShop.disabled = true;
+  } else {
+    buyShop.disabled = false;
+  }
+  if (balance < nextShip) {
+    buyShip.disabled = true;
+  } else {
+    buyShip.disabled = false;
+  }
+  if (balance < nextMine) {
+    buyMine.disabled = true;
+  } else {
+    buyMine.disabled = false;
+  }
+}
+
 function manageResearch() {
   for(let i=0; i < research.length; i++) {
     if (research[i].trigger() && (research[i].uses > 0)) {
@@ -111,7 +130,13 @@ function manageResearch() {
       activeResearch.push(research[i]);
     }
   }
-  //can add another for loop to change the formatting for ones you can afford
+  for(var i = 0; i < activeResearch.length; i++){
+    if (activeResearch[i].cost()){
+        activeResearch[i].element.disabled = false;
+    } else {
+        activeResearch[i].element.disabled = true;
+    }   
+  }
 }
 
 function displayResearch(project){
@@ -254,11 +279,13 @@ window.setInterval(function() {
   balanceText.innerText = Math.floor(balance);
   manageResearch();
   convertCurrency(balance);
+  checkButtons();
 }, 1000);
 
 window.setInterval(function() {
   balance += shopsMult * shops;
   balanceText.innerText = Math.floor(balance);
+  save();
 }, 5000);
 
 window.setInterval(function() {

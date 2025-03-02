@@ -5,6 +5,8 @@
   - set up global variables sheet
   - load() function that loads in the save data
   - refresh() that updates the webpage and the arrays for research
+- v1.5
+	- deactivate research buttons until you can afford them?
 - update html and buy functions to display in altinlar instead of kurler
 
 ## game structure

@@ -8,7 +8,7 @@ var research1 = {
   description: "Automate your sales - each employee generates 1 kür per second",
   trigger: function() {return balance >= 3},
   uses: 1,
-  //cost: ,
+  cost: function() {return true},
   flag: 0,
   element: null,
   effect: function() {
@@ -26,11 +26,11 @@ research.push(research1);
 var research2 = {
   id: "researchButton2",
   title: "Employee training ",
-  priceTag: "(2 altınlar)",
+  priceTag: "(2 altınlar / 720 kürler)",
   description: "Employees generate 25% higher revenue",
   trigger: function() {return balance >= 500},
   uses: 1,
-  //cost: ,
+  cost: function() {return balance >= 720},
   flag: 0,
   element: null,
   effect: function() {
@@ -53,7 +53,7 @@ var research3 = {
   description: "Sell your wares from shops - each shop generates 4 yiralar (120 kürler) every 5 seconds",
   trigger: function() {return balance >= 750},
   uses: 1,
-  //cost: ,
+  cost: function() {return true},
   flag: 0,
   element: null,
   effect: function() {
@@ -75,7 +75,7 @@ var research4 = {
   description: "Doesn't affect revenue, but easier to read!",
   trigger: function() {return balance >= 1200},
   uses: 1,
-  //cost: ,
+  cost: function() {return true},
   flag: 0,
   element: null,
   effect: function() {
@@ -100,7 +100,7 @@ var research5 = {
   description: "Shops generate 50% higher revenue",
   trigger: function() {return balance >= 25000},
   uses: 1,
-  //cost: ,
+  cost: function() {return balance >= 30240},
   flag: 0,
   element: null,
   effect: function() {
@@ -123,7 +123,7 @@ var research6 = {
   description: "Trade your wares across the sea - each ship generates 14 altınlar every 20 seconds",
   trigger: function() {return balance >= 30000},
   uses: 1,
-  //cost: ,
+  cost: function() {return true},
   flag: 0,
   element: null,
   effect: function() {
@@ -145,7 +145,7 @@ var research7 = {
   description: "Improves speed and durability of ships; increases revenue by 15%",
   trigger: function() {return ships >= 3},
   uses: 1,
-  //cost: ,
+  cost: function() {return balance >= 99000},
   flag: 0,
   element: null,
   effect: function() {
@@ -168,7 +168,7 @@ var research8 = {
   description: "Ships are faster; increases revenue by 35%",
   trigger: function() {return ships >= 6},
   uses: 1,
-  //cost: ,
+  cost: function() {return balance >= 153000},
   flag: 0,
   element: null,
   effect: function() {
@@ -191,7 +191,7 @@ var research9 = {
   description: "No impact on sailing, but our ships look better than any others on the ocean!",
   trigger: function() {return ships >= 10}, //TODO consider changing this to balance >= 260000?
   uses: 1,
-  //cost: ,
+  cost: function() {return balance >= 25920 * ships},
   flag: 0,
   element: null,
   effect: function() {
@@ -214,7 +214,7 @@ var research10 = {
   description: "Invest in gold by opening your own gold mines",
   trigger: function() {return balance >= 1000000},
   uses: 1,
-  //cost: ,
+  cost: function() {return true},
   flag: 0,
   element: null,
   effect: function() {

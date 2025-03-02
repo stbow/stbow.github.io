@@ -36,6 +36,11 @@ header, h1, h2, h3 {
   margin: 0;
 }
 
+h3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .version {
   font-family: 'Courier New', Courier, monospace;
   font-size: 1rem;
@@ -55,9 +60,8 @@ button {
   border-radius: 2px;
 }
 
-h3 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+button:disabled {
+  opacity: 0.8;
 }
 
 .research-button {
@@ -79,7 +83,3 @@ h3 {
 @media only screen and (max-width: 599px) {
   main { grid-template-columns: 300px; }
 }
-
-/* .disabled {
-  opacity: 0.6;
-} */
