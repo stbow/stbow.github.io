@@ -41,26 +41,26 @@
         </div>
       </div>
       <div id="col2">
-        <div id="expeditions-div">
+        <div id="expeditions-div" class="hidden">
           <p>Research points: <span id="points-count">0</span></p>
           <h3>Expeditions</h3>
           <button id="buy-research-ship">Buy new research ship</button>
-          <p>Cost: <span id="research-fleet-cost"></span></p>
+          <p>Cost: <span id="research-fleet-cost">1</span></p>
           <p>Research fleet: <span id="research-fleet-count">0</span> ships</p>
           <div id="expedition-options-engine">
-            <select id="type-picker">
+            <select id="type-picker" class="hidden">
               <option value="0">Expedition type</option>
               <option value="30">Shallow waters survey</option>
             </select>
-            <select id="crew-picker">
+            <select id="crew-picker" class="hidden">
               <option value="0">Crew experience</option>
               <option value="3">Level 1</option>
             </select>
-            <select id="equipment-picker">
+            <select id="equipment-picker" class="hidden">
               <option value="0">Supplies & equipment</option>
               <option value="3">Low quality</option>
             </select>
-            <p id="escape-plans">Advanced escape plans: active</p>
+            <p id="escape-plans" class="hidden">Advanced escape plans: active</p>
           </div>
           <button id="launch-btn">Launch expedition</button>
           <p id="expedition-result-text"></p>
@@ -74,7 +74,7 @@
     </main>
     <footer></footer>
     <script src="./globals.js"></script>
-    <script src="./research.js"></script>
+    <script src="./expeditions-research.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

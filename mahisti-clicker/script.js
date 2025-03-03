@@ -141,11 +141,11 @@ function checkButtons() {
   } else {
     buyResearchShip.disabled = false;
   }
-  /* if (balance < launchCost) {
+  if (researchShips === 0) {
     launchBtn.disabled = true;
   } else {
     launchBtn.disabled = false;
-  } */
+  }
 }
 
 function manageResearch() {
@@ -209,14 +209,17 @@ function calcProbability(prb) {
   else {return false};
 }
 
-// TODO need to set if statement so you can't launch if you don't have enough ships
 function launchExpedition() {
   let typeValue = parseInt(typePicker.value);
   let crewValue = parseInt(crewPicker.value);
   let equipmentValue = parseInt(equipmentPicker.value);
+
+  //TODO calculate cost for expedition, deduct from balance
+
   let successRate = typeValue + crewValue + equipmentValue + escapePlansFlag;
   console.log(successRate)
-
+  //TODO calculate actual research points (value is probability)
+  //TODO need to delay result
   if (calcProbability(successRate/100)) {
     //success!
     console.log("Success!")
@@ -229,6 +232,9 @@ function launchExpedition() {
     let lostShips = Math.floor(Math.random() * (researchShips + 1));
     researchShips -= lostShips;
     researchFleetCount.innerText = researchShips;
+    //TODO variable for total purchased vs current fleet size
+    nextResearchShip = Math.floor(1 * Math.pow(1.1,researchShips));
+    researchFleetCost.innerText = nextResearchShip;
     expeditionResultText.innerHTML = `Expedition failed. You lost ${lostShips} ships.`;
   }
 }
@@ -241,6 +247,7 @@ if (localStorage.getItem("saveData") !== null) {
 
 // SAVING AND LOADING ----------------------
 
+//TODO update all functions to add new variables
 function refresh() {
   balanceText.innerText = Math.floor(balance);
   convertCurrency(balance);
@@ -349,7 +356,7 @@ window.setInterval(function() {
   checkButtons();
 }, 1000);
 
-window.setInterval(function() {
+/* window.setInterval(function() {
   balance += shopsMult * shops;
   balanceText.innerText = Math.floor(balance);
 }, 5000);
@@ -357,10 +364,10 @@ window.setInterval(function() {
 window.setInterval(function() {
   balance += fleetMult * ships;
   balanceText.innerText = Math.floor(balance);
-}, 20000);
+}, 20000); */
 
 window.setInterval(function() {
-  balance += minesMult * mines;
-  balanceText.innerText = Math.floor(balance);
+  /* balance += minesMult * mines;
+  balanceText.innerText = Math.floor(balance); */
   save();
 }, 60000)
