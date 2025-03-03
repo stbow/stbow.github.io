@@ -468,6 +468,27 @@ var research21 = {
   
 research.push(research21);
 
+var research22 = {
+  id: "researchButton22",
+  title: "Begin researching sea serpents ",
+  priceTag: "(XX altınlar)",
+  description: "Launch research expeditions to learn more about the sea serpents",
+  trigger: function() {return },
+  uses: 1,
+  cost: function() {return },
+  flag: 0,
+  element: null,
+  effect: function() {
+    research22.flag = 1;
+    expeditionsDiv.classList.remove("hidden");
+    research22.element.parentNode.removeChild(research22.element);
+    let index = activeResearch.indexOf(research22);
+    activeResearch.splice(index, 1);
+  }
+}
+  
+research.push(research22);
+
 /* var researchX = {
   id: "researchButtonX",
   title: "",

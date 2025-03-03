@@ -30,13 +30,13 @@ header {
   align-items: baseline;
 }
 
-header, h1, h2, h3 {
+header, h1, h2, h3, h4 {
   color: #FFD700;
   font-family: 'UnderWorld', 'Brush Script MT';
   margin: 0;
 }
 
-h3 {
+h2, h3, h4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -74,6 +74,16 @@ button:disabled {
 
 .hidden {
   display: none;
+}
+
+select {
+  padding: 4px;
+  background-color: #FFD700;
+  font-family: 'Garamond';
+  border-color: #FFEA70;
+  border-radius: 2px;
+  width: 200px;
+  margin-bottom: 6px;
 }
 
 @media only screen and (max-width: 899px) {

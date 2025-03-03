@@ -14,3 +14,9 @@ var empMult = 1;
 var shopsMult = 120;
 var fleetMult = 5040;
 var minesMult = 180000;
+
+var researchPoints = 0;
+var researchShips = 0;
+var nextResearchShip = 1;
+var launchCost = 0;
+var escapePlansFlag = 0;

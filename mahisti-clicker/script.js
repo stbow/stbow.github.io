@@ -21,11 +21,25 @@ const fleetCost = document.getElementById("fleet-cost");
 const minesDiv = document.getElementById("mines-div");
 const minesCount = document.getElementById("mines-count");
 const minesCost = document.getElementById("mines-cost");
+const expeditionsDiv = document.getElementById("expeditions-div");
+const pointsCount = document.getElementById("points-count");
+const researchFleetCost = document.getElementById("research-fleet-cost");
+const researchFleetCount = document.getElementById("research-fleet-count");
+const expeditionOptionsEngine = document.getElementById("expedition-option-engine");
+const typePicker = document.getElementById("type-picker");
+const crewPicker = document.getElementById("crew-picker");
+const equipmentPicker = document.getElementById("equipment-picker");
+const escapePlans = document.getElementById("escape-plans");
+const expeditionResultText = document.getElementById("expedition-result-text");
 const sell = document.getElementById("sell");
 const hire = document.getElementById("hire");
 const buyShop = document.getElementById("buy-shop");
 const buyShip = document.getElementById("buy-ship");
 const buyMine = document.getElementById("buy-mine");
+const buyResearchShip = document.getElementById("buy-research-ship");
+const launchBtn = document.getElementById("launch-btn");
+
+// TODO add event listener to the picker dropdowns to update the cost for launching the expedition
 
 var savegame;
 
@@ -38,6 +52,8 @@ hire.onclick = hireEmployee;
 buyShop.onclick = newShop;
 buyShip.onclick = newShip;
 buyMine.onclick = newMine;
+buyResearchShip.onclick = newResearchShip;
+launchBtn.onclick = launchExpedition;
 
 // PURCHASE FUNCTIONS ----------------------
 
@@ -120,6 +136,16 @@ function checkButtons() {
   } else {
     buyMine.disabled = false;
   }
+  if (balance < nextResearchShip) {
+    buyResearchShip.disabled = true;
+  } else {
+    buyResearchShip.disabled = false;
+  }
+  /* if (balance < launchCost) {
+    launchBtn.disabled = true;
+  } else {
+    launchBtn.disabled = false;
+  } */
 }
 
 function manageResearch() {
@@ -163,6 +189,48 @@ function displayResearch(project){
 
   var description = document.createTextNode(project.description);
   project.element.appendChild(description);
+}
+
+// RESEARCH EXPEDITIONS --------------------
+
+function newResearchShip() {
+  researchShips++;
+  balance -= nextResearchShip;
+  balanceText.innerText = Math.floor(balance);
+  researchFleetCount.innerText = researchShips;
+  nextResearchShip = Math.floor(1 * Math.pow(1.1,researchShips));
+  researchFleetCost.innerText = nextResearchShip;
+  convertCurrency(balance);
+  checkButtons();
+}
+
+function calcProbability(prb) {
+  if (Math.random() < prb) {return true}
+  else {return false};
+}
+
+// TODO need to set if statement so you can't launch if you don't have enough ships
+function launchExpedition() {
+  let typeValue = parseInt(typePicker.value);
+  let crewValue = parseInt(crewPicker.value);
+  let equipmentValue = parseInt(equipmentPicker.value);
+  let successRate = typeValue + crewValue + equipmentValue + escapePlansFlag;
+  console.log(successRate)
+
+  if (calcProbability(successRate/100)) {
+    //success!
+    console.log("Success!")
+    researchPoints += typeValue;
+    pointsCount.innerText = researchPoints;
+    expeditionResultText.innerHTML = `Success! This expedition generated ${typeValue} research points.`; //THIS IS WRONG - typeValue is the probability not the research points
+  } else {
+    //failure
+    console.log("Fail")
+    let lostShips = Math.floor(Math.random() * (researchShips + 1));
+    researchShips -= lostShips;
+    researchFleetCount.innerText = researchShips;
+    expeditionResultText.innerHTML = `Expedition failed. You lost ${lostShips} ships.`;
+  }
 }
 
 // CHECK FOR SAVES -------------------------
