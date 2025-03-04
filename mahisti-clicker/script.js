@@ -30,7 +30,10 @@ const typePicker = document.getElementById("type-picker");
 const crewPicker = document.getElementById("crew-picker");
 const equipmentPicker = document.getElementById("equipment-picker");
 const escapePlans = document.getElementById("escape-plans");
+const launchCostText = document.getElementById("launch-cost");
 const expeditionResultText = document.getElementById("expedition-result-text");
+const discoveredSecretAnnouncementDiv = document.getElementById("discovered-secret-announcement");
+const billionaireAnnouncementDiv = document.getElementById("billionaire-announcement");
 const sell = document.getElementById("sell");
 const hire = document.getElementById("hire");
 const buyShop = document.getElementById("buy-shop");
@@ -38,8 +41,7 @@ const buyShip = document.getElementById("buy-ship");
 const buyMine = document.getElementById("buy-mine");
 const buyResearchShip = document.getElementById("buy-research-ship");
 const launchBtn = document.getElementById("launch-btn");
-
-// TODO add event listener to the picker dropdowns to update the cost for launching the expedition
+const startOverBtn = document.getElementById("start-over-btn");
 
 var savegame;
 
@@ -54,6 +56,7 @@ buyShip.onclick = newShip;
 buyMine.onclick = newMine;
 buyResearchShip.onclick = newResearchShip;
 launchBtn.onclick = launchExpedition;
+startOverBtn.onclick = startOver;
 
 // PURCHASE FUNCTIONS ----------------------
 
@@ -141,7 +144,7 @@ function checkButtons() {
   } else {
     buyResearchShip.disabled = false;
   }
-  if (researchShips === 0) {
+  if (researchShips === 0 || balance < launchCost || typePicker.value === "0") {
     launchBtn.disabled = true;
   } else {
     launchBtn.disabled = false;
@@ -195,10 +198,11 @@ function displayResearch(project){
 
 function newResearchShip() {
   researchShips++;
+  researchFleetTotal++;
   balance -= nextResearchShip;
   balanceText.innerText = Math.floor(balance);
   researchFleetCount.innerText = researchShips;
-  nextResearchShip = Math.floor(1 * Math.pow(1.1,researchShips));
+  nextResearchShip = Math.floor(1 * Math.pow(1.1,researchFleetTotal));
   researchFleetCost.innerText = nextResearchShip;
   convertCurrency(balance);
   checkButtons();
@@ -209,34 +213,75 @@ function calcProbability(prb) {
   else {return false};
 }
 
-function launchExpedition() {
+function calcLaunchCost() {
   let typeValue = parseInt(typePicker.value);
   let crewValue = parseInt(crewPicker.value);
   let equipmentValue = parseInt(equipmentPicker.value);
 
-  //TODO calculate cost for expedition, deduct from balance
+  launchCost = 0;
+
+  for (let i=0; i < 3; i++) { //look through TYPES
+    if (typeValue === expeditionOptionsList[i].value) {
+      launchCost += expeditionOptionsList[i].cost;
+    }
+  }
+  for (let i=3; i < 6; i++) { //look through CREWS
+    if (crewValue === expeditionOptionsList[i].value) {
+      launchCost += expeditionOptionsList[i].cost;
+    }
+  }
+  for (let i=6; i < expeditionOptionsList.length; i++) { //look through EQUIPS
+    if (equipmentValue === expeditionOptionsList[i].value) {
+      launchCost += expeditionOptionsList[i].cost;
+    }
+  }
+  checkButtons();
+}
+
+typePicker.oninput = updateLaunchCost;
+crewPicker.oninput = updateLaunchCost;
+equipmentPicker.oninput = updateLaunchCost;
+
+function updateLaunchCost() {
+  calcLaunchCost();
+  launchCostText.innerText = Math.ceil(launchCost);
+}
+
+function launchExpedition() {
+  let typeValue = parseInt(typePicker.value);
+  let crewValue = parseInt(crewPicker.value);
+  let equipmentValue = parseInt(equipmentPicker.value);
+  let newResearchPoints = 0;
+
+  calcLaunchCost();
+  balance -= launchCost;
+  balanceText.innerText = Math.floor(balance);
 
   let successRate = typeValue + crewValue + equipmentValue + escapePlansFlag;
-  console.log(successRate)
-  //TODO calculate actual research points (value is probability)
+  console.log("successRate is ", successRate)
+
   //TODO need to delay result
   if (calcProbability(successRate/100)) {
     //success!
     console.log("Success!")
-    researchPoints += typeValue;
+    for (let i=0; i < 3; i++) { //look through TYPES
+      if (typeValue === expeditionOptionsList[i].value) {
+        newResearchPoints = expeditionOptionsList[i].result;
+        researchPoints += newResearchPoints;
+        break;
+      }
+    }
     pointsCount.innerText = researchPoints;
-    expeditionResultText.innerHTML = `Success! This expedition generated ${typeValue} research points.`; //THIS IS WRONG - typeValue is the probability not the research points
+    expeditionResultText.innerHTML = `Success! This expedition generated ${newResearchPoints} research points.`;
   } else {
     //failure
     console.log("Fail")
     let lostShips = Math.floor(Math.random() * (researchShips + 1));
     researchShips -= lostShips;
     researchFleetCount.innerText = researchShips;
-    //TODO variable for total purchased vs current fleet size
-    nextResearchShip = Math.floor(1 * Math.pow(1.1,researchShips));
-    researchFleetCost.innerText = nextResearchShip;
     expeditionResultText.innerHTML = `Expedition failed. You lost ${lostShips} ships.`;
   }
+  checkButtons();
 }
 
 // CHECK FOR SAVES -------------------------
@@ -344,6 +389,13 @@ function load() {
     }
   }
   refresh();
+}
+
+//TODO how to make this appear? how to check for balance >= 1bil?
+
+function startOver() {
+  deleteSave();
+  location.reload();
 }
 
 // TIMERS ------------------------------------

@@ -4,17 +4,17 @@ var activeResearch = [];
 var research22 = {
   id: "researchButton22",
   title: "Begin researching sea serpents ",
-  priceTag: "(3000 altınlar)",
+  priceTag: "(125,000 alt\u0131nlar)",
   description: "Launch research expeditions to learn more about the sea serpents",
-  trigger: function() {return balance >= 8},
+  trigger: function() {return true}, //research19.flag === 1
   uses: 1,
-  cost: function() {return balance >= 10},
+  cost: function() {return true}, //balance >= 45000000
   flag: 0,
   element: null,
   effect: function() {
     research22.flag = 1;
     expeditionsDiv.classList.remove("hidden");
-    balance -= 10;
+    //balance -= 45000000;
     research22.element.parentNode.removeChild(research22.element);
     let index = activeResearch.indexOf(research22);
     activeResearch.splice(index, 1);
@@ -48,7 +48,7 @@ var research24 = {
   id: "researchButton24",
   title: "Deep sea study ",
   priceTag: "(100 points)",
-  description: "Venture into open waters - serpent attacks are possible, but greater payoff",
+  description: "Venture into open waters - serpent attacks are possible, but payoff is greater",
   trigger: function() {return research23.flag === 1},
   uses: 1,
   cost: function() {return researchPoints >= 100},
@@ -61,7 +61,7 @@ var research24 = {
     var typeList = document.getElementById("type-picker");
     var el = document.createElement("option");
     el.textContent = "Deep sea study";
-    el.value = 10;
+    el.value = 30;
     typeList.appendChild(el);
     research24.element.parentNode.removeChild(research24.element);
     let index = activeResearch.indexOf(research24);
@@ -88,7 +88,7 @@ var research25 = {
     var typeList = document.getElementById("type-picker");
     var el = document.createElement("option");
     el.textContent = "Forbidden waters expedition";
-    el.value = 3;
+    el.value = 10;
     typeList.appendChild(el);
     research25.element.parentNode.removeChild(research25.element);
     let index = activeResearch.indexOf(research25);
@@ -123,9 +123,9 @@ research.push(research26);
 
 var research27 = {
   id: "researchButton27",
-  title: "Hire somewhat experienced crews ",
+  title: "Hire more experienced crews ",
   priceTag: "(150 points)",
-  description: "Somewhat experienced (Level 2) crews are more expensive, but more likely to survive",
+  description: "More experienced (Level 2) crews are more expensive, but more likely to survive",
   trigger: function() {return research26.flag === 1},
   uses: 1,
   cost: function() {return researchPoints >= 150},
@@ -138,7 +138,7 @@ var research27 = {
     var typeList = document.getElementById("crew-picker");
     var el = document.createElement("option");
     el.textContent = "Level 2";
-    el.value = 10;
+    el.value = 15;
     typeList.appendChild(el);
     research27.element.parentNode.removeChild(research27.element);
     let index = activeResearch.indexOf(research27);
@@ -165,7 +165,7 @@ var research28 = {
     var typeList = document.getElementById("crew-picker");
     var el = document.createElement("option");
     el.textContent = "Level 3";
-    el.value = 30;
+    el.value = 20;
     typeList.appendChild(el);
     research28.element.parentNode.removeChild(research28.element);
     let index = activeResearch.indexOf(research28);
@@ -215,7 +215,7 @@ var research30 = {
     var typeList = document.getElementById("equipment-picker");
     var el = document.createElement("option");
     el.textContent = "Medium quality";
-    el.value = 10;
+    el.value = 15;
     typeList.appendChild(el);
     research30.element.parentNode.removeChild(research30.element);
     let index = activeResearch.indexOf(research30);
@@ -242,7 +242,7 @@ var research31 = {
     var typeList = document.getElementById("equipment-picker");
     var el = document.createElement("option");
     el.textContent = "High quality supplies";
-    el.value = 30;
+    el.value = 20;
     typeList.appendChild(el);
     research31.element.parentNode.removeChild(research31.element);
     let index = activeResearch.indexOf(research31);
@@ -255,16 +255,16 @@ research.push(research31);
 var research32 = {
   id: "researchButton32",
   title: "Advanced escape plans ",
-  priceTag: "(4,000 altınlar)",
+  priceTag: "(150,000 alt\u0131nlar)",
   description: "Invest in diversion tactics to improve expedition success rates",
-  trigger: function() {return balance >= 1000},
+  trigger: function() {return balance >= 40000000},
   uses: 1,
-  cost: function() {return balance >= 1440},
+  cost: function() {return balance >= 54000000},
   flag: 0,
   element: null,
   effect: function() {
     research32.flag = 1;
-    balance -= 1440;
+    balance -= 54000000;
     escapePlans.classList.remove("hidden");
     escapePlansFlag = 5;
     research32.element.parentNode.removeChild(research32.element);
@@ -275,10 +275,99 @@ var research32 = {
 
 research.push(research32);
 
+var research34 = {
+  id: "researchButton37",
+  title: "Launch the \"Ocean's Light\" ",
+  priceTag: "(1,000 points)",
+  description: "Make the maiden voyage from Ara\u015ft to Amariyan",
+  trigger: function() {return research31.flag === 1 && researchPoints > 500},
+  uses: 1,
+  cost: function() {return researchPoints >= 1000},
+  flag: 0,
+  element: null,
+  effect: function() {
+    research34.flag = 1;
+    discoveredSecretAnnouncementDiv.classList.remove("hidden");
+    expeditionsDiv.classList.add("hidden");
+    empMult += 0.5;
+    shopsMult += 0.5;
+    fleetMult += 0.5;
+    minesMult += 0.5;
+    research34.element.parentNode.removeChild(research34.element);
+    let index = activeResearch.indexOf(research34);
+    activeResearch.splice(index, 1);
+  }
+}
+
+research.push(research34);
+
+var research35 = {
+  id: "researchButton35",
+  title: "",
+  priceTag: "(XX alt\u0131nlar)",
+  description: "",
+  trigger: function() {return },
+  uses: 1,
+  cost: function() {return },
+  flag: 0,
+  element: null,
+  effect: function() {
+    research35.flag = 1;
+
+    research35.element.parentNode.removeChild(research35.element);
+    let index = activeResearch.indexOf(research35);
+    activeResearch.splice(index, 1);
+  }
+}
+
+research.push(research35);
+
+var research36 = {
+  id: "researchButton36",
+  title: "",
+  priceTag: "(XX alt\u0131nlar)",
+  description: "",
+  trigger: function() {return },
+  uses: 1,
+  cost: function() {return },
+  flag: 0,
+  element: null,
+  effect: function() {
+    research36.flag = 1;
+
+    research36.element.parentNode.removeChild(research36.element);
+    let index = activeResearch.indexOf(research36);
+    activeResearch.splice(index, 1);
+  }
+}
+
+research.push(research36);
+
+var research40 = {
+  id: "researchButton40",
+  title: "",
+  priceTag: "(XX alt\u0131nlar)",
+  description: "",
+  trigger: function() {return },
+  uses: 1,
+  cost: function() {return },
+  flag: 0,
+  element: null,
+  effect: function() {
+    research40.flag = 1;
+
+    research40.element.parentNode.removeChild(research40.element);
+    let index = activeResearch.indexOf(research40);
+    activeResearch.splice(index, 1);
+  }
+}
+
+research.push(research40);
+
 /* var researchX = {
   id: "researchButtonX",
   title: "",
-  priceTag: "(XX altınlar)",
+  priceTag: "(XX alt\u0131nlar)",
   description: "",
   trigger: function() {return },
   uses: 1,

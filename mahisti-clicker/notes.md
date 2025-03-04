@@ -2,6 +2,9 @@
 
 ## change log
 
+- v3
+	- BEFORE PUSHING: delay the output from the research expeditions; update save/load functions to include new variables; copy html and research into correct files; decide on style for announcements; check for any remaining TODO; set values back to correct; test full game
+	- added next phase of game
 - v2
 	- new research options
 	- auto save every minute

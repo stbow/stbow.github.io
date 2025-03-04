@@ -17,7 +17,7 @@
     <main>
       <div id="col1">
         <p>Money: <span id="balance">0</span> k&#252;rler</p>
-        <p id="currency"><span id="altinlar"></span> altınlar, <span id="yiralar"></span> yiralar, and <span id="kurler"></span> kürler</p>
+        <p id="currency"><span id="altinlar"></span> alt&#305;nlar, <span id="yiralar"></span> yiralar, and <span id="kurler"></span> k&#252;rler</p>
         <button id="sell">Sell for 1 k&#252;r</button>
         <div id="employees-div">
           <p>Employees: <span id="employees-count">0</span></p>
@@ -41,26 +41,27 @@
         </div>
       </div>
       <div id="col2">
-        <div id="expeditions-div" class="hidden">
+        <div id="expeditions-div">
           <p>Research points: <span id="points-count">0</span></p>
           <h3>Expeditions</h3>
           <button id="buy-research-ship">Buy new research ship</button>
           <p>Cost: <span id="research-fleet-cost">1</span></p>
           <p>Research fleet: <span id="research-fleet-count">0</span> ships</p>
           <div id="expedition-options-engine">
-            <select id="type-picker" class="hidden">
-              <option value="0">Expedition type</option>
-              <option value="30">Shallow waters survey</option>
+            <form name="form"><select id="type-picker" autocomplete="off">
+              <option value="0" selected disabled>Expedition type</option>
+              <option value="50">Shallow waters survey</option>
             </select>
-            <select id="crew-picker" class="hidden">
-              <option value="0">Crew experience</option>
-              <option value="3">Level 1</option>
+            <select id="crew-picker" autocomplete="off">
+              <option value="0" selected disabled>Crew experience</option>
+              <option value="10">Level 1</option>
             </select>
-            <select id="equipment-picker" class="hidden">
-              <option value="0">Supplies & equipment</option>
-              <option value="3">Low quality</option>
-            </select>
+            <select id="equipment-picker" autocomplete="off">
+              <option value="0" selected disabled>Supplies & equipment</option>
+              <option value="10">Low quality</option>
+            </select></form>
             <p id="escape-plans" class="hidden">Advanced escape plans: active</p>
+            <p>Expedition cost: <span id="launch-cost">0</span> k&#252;rler</p>
           </div>
           <button id="launch-btn">Launch expedition</button>
           <p id="expedition-result-text"></p>
@@ -69,7 +70,17 @@
         <div id="research-list"></div>
       </div>
       <div id="col3">
-        
+        <div id="announcements-list">
+          <div id="billionaire-announcement" class="announcement hidden">
+            <p id="congrats-text">Congratulations! You won capitalism!</p>
+            <p id="billionaire-text">You have accumulated one billion k&#252;rler. Your family will rule Ara&#351;t for generations to come and will go down in history as <del>those Ara&#351;ti bastards</del> the ruling family of Ara&#351;t.</p>
+            <button id="start-over-btn">Start over</button>
+          </div>
+          <div id="discovered-secret-announcement" class="announcement hidden">
+            <p id="congrats-text">Congratulations! </p>
+            <p id="secret-text">You have discovered the secret to avoiding the sea serpents. You now have a total monopoly on trade for six months every summer.</p>
+          </div>
+        </div>
       </div>
     </main>
     <footer></footer>

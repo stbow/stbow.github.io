@@ -429,7 +429,7 @@ var research20 = {
   title: "Gold purification ",
   priceTag: "(24,000 altınlar)",
   description: "Increases the value of gold ore",
-  trigger: function() {return balance >= 5000000},
+  trigger: function() {return balance >= 5000000 && research18.flag === 1},
   uses: 1,
   cost: function() {return balance >= 8640000},
   flag: 0,
