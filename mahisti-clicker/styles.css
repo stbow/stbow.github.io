@@ -91,6 +91,18 @@ select {
   margin-bottom: 6px;
 }
 
+#expedition-progress {
+  width: 100%;
+  background-color: gray;
+  margin-top: 1em;
+}
+
+#expedition-progress-bar {
+  width: 1%;
+  height: 20px;
+  background-color: #FFD700;
+}
+
 .announcement {
   margin-top: 1rem;
 }

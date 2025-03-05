@@ -31,6 +31,7 @@ const crewPicker = document.getElementById("crew-picker");
 const equipmentPicker = document.getElementById("equipment-picker");
 const escapePlans = document.getElementById("escape-plans");
 const launchCostText = document.getElementById("launch-cost");
+const expeditionProgressBar = document.getElementById("expedition-progress-bar");
 const expeditionResultText = document.getElementById("expedition-result-text");
 const discoveredSecretAnnouncementDiv = document.getElementById("discovered-secret-announcement");
 const billionaireAnnouncementDiv = document.getElementById("billionaire-announcement");
@@ -247,41 +248,70 @@ function updateLaunchCost() {
   launchCostText.innerText = Math.ceil(launchCost);
 }
 
+var progress = 0;
+var width = 1;
+
 function launchExpedition() {
+  console.log("progress = ", progress)
   let typeValue = parseInt(typePicker.value);
   let crewValue = parseInt(crewPicker.value);
   let equipmentValue = parseInt(equipmentPicker.value);
   let newResearchPoints = 0;
+  let time = 50;
 
   calcLaunchCost();
   balance -= launchCost;
   balanceText.innerText = Math.floor(balance);
 
-  let successRate = typeValue + crewValue + equipmentValue + escapePlansFlag;
-  console.log("successRate is ", successRate)
-
-  //TODO need to delay result
-  if (calcProbability(successRate/100)) {
-    //success!
-    console.log("Success!")
-    for (let i=0; i < 3; i++) { //look through TYPES
-      if (typeValue === expeditionOptionsList[i].value) {
-        newResearchPoints = expeditionOptionsList[i].result;
-        researchPoints += newResearchPoints;
-        break;
-      }
-    }
-    pointsCount.innerText = researchPoints;
-    expeditionResultText.innerHTML = `Success! This expedition generated ${newResearchPoints} research points.`;
-  } else {
-    //failure
-    console.log("Fail")
-    let lostShips = Math.floor(Math.random() * (researchShips + 1));
-    researchShips -= lostShips;
-    researchFleetCount.innerText = researchShips;
-    expeditionResultText.innerHTML = `Expedition failed. You lost ${lostShips} ships.`;
+  if (typeValue === 30) {
+    time = 600;
+  } else if (typeValue === 10) {
+    time = 3000;
   }
+  
+  progressBar(time);
   checkButtons();
+  console.log("Start waiting...");
+
+  setTimeout(() => { // wait for progress to finish
+    let successRate = typeValue + crewValue + equipmentValue + escapePlansFlag;
+
+    if (calcProbability(successRate/100)) { //success!
+      for (let i=0; i < 3; i++) { //look through TYPES
+        if (typeValue === expeditionOptionsList[i].value) {
+          newResearchPoints = expeditionOptionsList[i].result;
+          researchPoints += newResearchPoints;
+          break;
+        }
+      }
+      pointsCount.innerText = researchPoints;
+      expeditionResultText.innerHTML = `Success! This expedition generated ${newResearchPoints} research points.`;
+    } else { //failure
+      let lostShips = Math.floor(Math.random() * (researchShips + 1));
+      researchShips -= lostShips;
+      researchFleetCount.innerText = researchShips;
+      expeditionResultText.innerHTML = `Expedition failed. You lost ${lostShips} ships.`;
+    }
+    setTimeout(() => {
+      width = 1;
+      expeditionProgressBar.style.width = "1%";
+    }, 2000);
+  }, time * 100);
+}
+
+function progressBar(time) {
+  if (progress === 0) {
+    progress = 1;
+    let progressTimer = setInterval(() => {
+      if (width >= 100) {
+        clearInterval(progressTimer);
+        progress = 0;
+      } else {
+        width++;
+        expeditionProgressBar.style.width = width + "%";
+      }
+    }, time);
+  }
 }
 
 // CHECK FOR SAVES -------------------------
