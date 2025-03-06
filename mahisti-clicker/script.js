@@ -73,7 +73,7 @@ function hireEmployee() {
   balanceText.innerText = Math.floor(balance);
   employeesCount.innerText = employees;
   nextEmployee = Math.floor(5 * Math.pow(1.2,employees));
-  employeeCost.innerText = nextEmployee;
+  employeeCost.innerText = easyRead(nextEmployee);
   convertCurrency(balance);
   checkButtons();
 }
@@ -84,7 +84,7 @@ function newShop() {
   balanceText.innerText = Math.floor(balance);
   shopsCount.innerText = shops;
   nextShop = Math.floor(1080 * Math.pow(1.1,shops));
-  shopCost.innerText = nextShop;
+  shopCost.innerText = easyRead(nextShop);
   convertCurrency(balance);
   checkButtons();
 }
@@ -95,7 +95,7 @@ function newShip() {
   balanceText.innerText = Math.floor(balance);
   fleetCount.innerText = ships;
   nextShip = Math.floor(43200 * Math.pow(1.1,ships));
-  fleetCost.innerText = nextShip;
+  fleetCost.innerText = easyRead(nextShip);
   convertCurrency(balance);
   checkButtons();
 }
@@ -106,7 +106,7 @@ function newMine() {
   balanceText.innerText = Math.floor(balance);
   minesCount.innerText = mines;
   nextMine = Math.floor(1512000 * Math.pow(1.1,mines));
-  minesCost.innerText = nextMine;
+  minesCost.innerText = easyRead(nextMine);
   convertCurrency(balance);
   checkButtons();
 }
@@ -117,6 +117,19 @@ function convertCurrency(num) {
   altinlar.innerText = Math.floor(num / 360);
   yiralar.innerText = Math.floor(num % 360 / 30);
   kurler.innerText = Math.floor(num % 360 % 30);
+}
+
+function easyRead(num) {
+  a = Math.ceil(num / 360);
+  y = Math.ceil(num % 360 / 30);
+  k = Math.ceil(num % 360 % 30);
+  if (num >= 331) {
+    return `${a} \u023a`;
+  } else if (num >= 30) {
+    return `${y} \u024e`;
+  } else {
+    return `${k} \u20ad`
+  }
 }
 
 function checkButtons() {
@@ -145,7 +158,7 @@ function checkButtons() {
   } else {
     buyResearchShip.disabled = false;
   }
-  if (researchShips === 0 || balance < launchCost || typePicker.value === "0") {
+  if (researchShips === 0 || balance < launchCost || typePicker.value === "0" || launching === 1) {
     launchBtn.disabled = true;
   } else {
     launchBtn.disabled = false;
@@ -204,7 +217,7 @@ function newResearchShip() {
   balanceText.innerText = Math.floor(balance);
   researchFleetCount.innerText = researchShips;
   nextResearchShip = Math.floor(1 * Math.pow(1.1,researchFleetTotal));
-  researchFleetCost.innerText = nextResearchShip;
+  researchFleetCost.innerText = easyRead(nextResearchShip);
   convertCurrency(balance);
   checkButtons();
 }
@@ -250,18 +263,19 @@ function updateLaunchCost() {
 
 var progress = 0;
 var width = 1;
+var launching = 0;
 
 function launchExpedition() {
-  console.log("progress = ", progress)
+  launching = 1;
+  calcLaunchCost();
+  balance -= launchCost;
+  balanceText.innerText = Math.floor(balance);
+
   let typeValue = parseInt(typePicker.value);
   let crewValue = parseInt(crewPicker.value);
   let equipmentValue = parseInt(equipmentPicker.value);
   let newResearchPoints = 0;
   let time = 50;
-
-  calcLaunchCost();
-  balance -= launchCost;
-  balanceText.innerText = Math.floor(balance);
 
   if (typeValue === 30) {
     time = 600;
@@ -271,7 +285,6 @@ function launchExpedition() {
   
   progressBar(time);
   checkButtons();
-  console.log("Start waiting...");
 
   setTimeout(() => { // wait for progress to finish
     let successRate = typeValue + crewValue + equipmentValue + escapePlansFlag;
@@ -295,8 +308,9 @@ function launchExpedition() {
     setTimeout(() => {
       width = 1;
       expeditionProgressBar.style.width = "1%";
+      launching = 0;
     }, 2000);
-  }, time * 100);
+  }, (time * 100) + 500);
 }
 
 function progressBar(time) {
@@ -328,21 +342,70 @@ function refresh() {
   convertCurrency(balance);
   employeesCount.innerText = employees;
   employeeCost.innerText = nextEmployee;
-  balanceText.innerText = Math.floor(balance);
   shopsCount.innerText = shops;
   shopCost.innerText = nextShop;
-  balanceText.innerText = Math.floor(balance);
   fleetCount.innerText = ships;
   fleetCost.innerText = nextShip;
-  balanceText.innerText = Math.floor(balance);
   minesCount.innerText = mines;
   minesCost.innerText = nextMine;
+  pointsCount.innerText = researchPoints;
+  researchFleetCost.innerText = nextResearchShip;
+  researchFleetCount.innerText = researchShips;
 
   if (research1.flag === 1) employeesDiv.classList.remove("hidden");
   if (research5.flag === 1) shopsDiv.classList.remove("hidden");
   if (research4.flag === 1) currency.classList.remove("hidden");
   if (research11.flag === 1) fleetDiv.classList.remove("hidden");
   if (research17.flag === 1) minesDiv.classList.remove("hidden");
+  if (research22.flag === 1 && research34.flag === 0) {
+    expeditionsDiv.classList.remove("hidden");
+    if (research23.flag === 1) typePicker.classList.remove("hidden");
+    if (research24.flag === 1) {
+      var list = document.getElementById("type-picker");
+      var el = document.createElement("option");
+      el.textContent = "Deep sea study";
+      el.value = 30;
+      list.appendChild(el);
+    }
+    if (research25.flag === 1) {
+      var list = document.getElementById("type-picker");
+      var el = document.createElement("option");
+      el.textContent = "Forbidden waters expedition";
+      el.value = 10;
+      list.appendChild(el);
+    }
+    if (research26.flag === 1) crewPicker.classList.remove("hidden");
+    if (research27.flag === 1) {
+      var list = document.getElementById("crew-picker");
+      var el = document.createElement("option");
+      el.textContent = "Level 2";
+      el.value = 15;
+      list.appendChild(el);
+    }
+    if (research28.flag === 1) {
+      var list = document.getElementById("crew-picker");
+      var el = document.createElement("option");
+      el.textContent = "Level 3";
+      el.value = 20;
+      list.appendChild(el);
+    }
+    if (research29.flag === 1) equipmentPicker.classList.remove("hidden");
+    if (research30.flag === 1) {
+      var list = document.getElementById("equipment-picker");
+      var el = document.createElement("option");
+      el.textContent = "Medium quality";
+      el.value = 15;
+      list.appendChild(el);
+    }
+    if (research31.flag === 5) {
+      var list = document.getElementById("equipment-picker");
+      var el = document.createElement("option");
+      el.textContent = "High quality supplies";
+      el.value = 20;
+      list.appendChild(el);
+    }
+    if (research32.flag === 1) escapePlans.classList.remove("hidden");
+  }
 }
 
 function save() {
@@ -373,6 +436,12 @@ function save() {
     shopsMult: shopsMult,
     fleetMult: fleetMult,
     minesMult: minesMult,
+    researchPoints: researchPoints,
+    researchShips: researchShips,
+    nextResearchShip: nextResearchShip,
+    launchCost: launchCost,
+    escapePlansFlag: escapePlansFlag,
+    researchFleetTotal: researchFleetTotal
     //prestige: prestige
   }
   localStorage.setItem("saveData",JSON.stringify(saveData));
@@ -400,6 +469,12 @@ function load() {
   if (typeof savegame.shopsMult !== "undefined") shopsMult = savegame.shopsMult;
   if (typeof savegame.fleetMult !== "undefined") fleetMult = savegame.fleetMult;
   if (typeof savegame.minesMult !== "undefined") minesMult = savegame.minesMult;
+  if (typeof savegame.researchPoints !== "undefined") researchPoints = savegame.researchPoints;
+  if (typeof savegame.researchShips !== "undefined") researchShips = savegame.researchShips;
+  if (typeof savegame.nextResearchShip !== "undefined") nextResearchShip = savegame.nextResearchShip;
+  if (typeof savegame.launchCost !== "undefined") launchCost = savegame.launchCost;
+  if (typeof savegame.escapePlansFlag !== "undefined") escapePlansFlag = savegame.escapePlansFlag;
+  if (typeof savegame.researchFleetTotal !== "undefined") researchFleetTotal = savegame.researchFleetTotal;
   //if (typeof savegame.prestige !== "undefined") prestige = savegame.prestige;
 
   // update research
@@ -452,4 +527,5 @@ window.setInterval(function() {
   /* balance += minesMult * mines;
   balanceText.innerText = Math.floor(balance); */
   save();
+  if (balance >= 1000000000) billionaireAnnouncementDiv.classList.remove("hidden");
 }, 60000)

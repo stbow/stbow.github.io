@@ -58,11 +58,11 @@ var research24 = {
     research24.flag = 1;
     researchPoints -= 100;
     pointsCount.innerText = researchPoints;
-    var typeList = document.getElementById("type-picker");
+    var list = document.getElementById("type-picker");
     var el = document.createElement("option");
     el.textContent = "Deep sea study";
     el.value = 30;
-    typeList.appendChild(el);
+    list.appendChild(el);
     research24.element.parentNode.removeChild(research24.element);
     let index = activeResearch.indexOf(research24);
     activeResearch.splice(index, 1);
@@ -85,11 +85,11 @@ var research25 = {
     research25.flag = 1;
     researchPoints -= 300;
     pointsCount.innerText = researchPoints;
-    var typeList = document.getElementById("type-picker");
+    var list = document.getElementById("type-picker");
     var el = document.createElement("option");
     el.textContent = "Forbidden waters expedition";
     el.value = 10;
-    typeList.appendChild(el);
+    list.appendChild(el);
     research25.element.parentNode.removeChild(research25.element);
     let index = activeResearch.indexOf(research25);
     activeResearch.splice(index, 1);
@@ -135,11 +135,11 @@ var research27 = {
     research27.flag = 1;
     researchPoints -= 150;
     pointsCount.innerText = researchPoints;
-    var typeList = document.getElementById("crew-picker");
+    var list = document.getElementById("crew-picker");
     var el = document.createElement("option");
     el.textContent = "Level 2";
     el.value = 15;
-    typeList.appendChild(el);
+    list.appendChild(el);
     research27.element.parentNode.removeChild(research27.element);
     let index = activeResearch.indexOf(research27);
     activeResearch.splice(index, 1);
@@ -162,11 +162,11 @@ var research28 = {
     research28.flag = 1;
     researchPoints -= 400;
     pointsCount.innerText = researchPoints;
-    var typeList = document.getElementById("crew-picker");
+    var list = document.getElementById("crew-picker");
     var el = document.createElement("option");
     el.textContent = "Level 3";
     el.value = 20;
-    typeList.appendChild(el);
+    list.appendChild(el);
     research28.element.parentNode.removeChild(research28.element);
     let index = activeResearch.indexOf(research28);
     activeResearch.splice(index, 1);
@@ -212,11 +212,11 @@ var research30 = {
     research30.flag = 1;
     researchPoints -= 200;
     pointsCount.innerText = researchPoints;
-    var typeList = document.getElementById("equipment-picker");
+    var list = document.getElementById("equipment-picker");
     var el = document.createElement("option");
     el.textContent = "Medium quality";
     el.value = 15;
-    typeList.appendChild(el);
+    list.appendChild(el);
     research30.element.parentNode.removeChild(research30.element);
     let index = activeResearch.indexOf(research30);
     activeResearch.splice(index, 1);
@@ -239,11 +239,11 @@ var research31 = {
     research31.flag = 1;
     researchPoints -= 500;
     pointsCount.innerText = researchPoints;
-    var typeList = document.getElementById("equipment-picker");
+    var list = document.getElementById("equipment-picker");
     var el = document.createElement("option");
     el.textContent = "High quality supplies";
     el.value = 20;
-    typeList.appendChild(el);
+    list.appendChild(el);
     research31.element.parentNode.removeChild(research31.element);
     let index = activeResearch.indexOf(research31);
     activeResearch.splice(index, 1);
@@ -257,7 +257,7 @@ var research32 = {
   title: "Advanced escape plans ",
   priceTag: "(150,000 alt\u0131nlar)",
   description: "Invest in diversion tactics to improve expedition success rates",
-  trigger: function() {return balance >= 40000000},
+  trigger: function() {return balance >= 40000000 && research24.flag === 1},
   uses: 1,
   cost: function() {return balance >= 54000000},
   flag: 0,
@@ -276,7 +276,7 @@ var research32 = {
 research.push(research32);
 
 var research34 = {
-  id: "researchButton37",
+  id: "researchButton34",
   title: "Launch the \"Ocean's Light\" ",
   priceTag: "(1,000 points)",
   description: "Make the maiden voyage from Ara\u015ft to Amariyan",

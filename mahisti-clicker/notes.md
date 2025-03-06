@@ -162,3 +162,19 @@ happiness/satisfaction rating? spend satisfaction points?
 - kip - `&#8365;`
 - yen - `&#165;` or `&yen;`
 - austral - `&#8371;`
+
+- a with stroke 
+	- JS: `\u023a`
+	- full unicode: `U+0023A`
+	- Hex code: `&#x023A;`
+	- HTML code: `&#570;`
+- y with stroke
+	- JS: `\u024e`
+	- full unicode: `U+0024E`
+	- Hex code: `&#x024E;`
+	- HTML code: `&#590;`
+- kip sign
+	- JS: `\u20ad`
+	- full unicode: `U+020AD`
+	- Hex code: `&#x20AD;`
+	- HTML code: `&#8365;`
