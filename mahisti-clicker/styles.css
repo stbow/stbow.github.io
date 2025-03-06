@@ -37,7 +37,7 @@ header, h1, h2, h3, h4 {
 }
 
 h2, h3, h4 {
-  margin-top: 1rem;
+  margin-top: 0.7rem;
   margin-bottom: 1rem;
 }
 
@@ -49,12 +49,17 @@ h2, h3, h4 {
 
 main {
   display: grid;
-  grid-template-columns: 300px 300px 300px;
+  grid-template-columns: 300px 300px 350px;
 }
 
-.announcement p {
-  margin-top: 0;
-  margin-bottom: 0;
+.balance {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 button {
@@ -63,10 +68,15 @@ button {
   font-family: 'Garamond';
   border-color: #FFEA70;
   border-radius: 2px;
+  margin-bottom: 0.7em;
 }
 
 button:disabled {
   opacity: 0.8;
+}
+
+#expeditions-div {
+  margin-top: 1em;
 }
 
 .research-button {
@@ -91,6 +101,10 @@ select {
   margin-bottom: 6px;
 }
 
+#launch-btn {
+  margin-bottom: 0;
+}
+
 #expedition-progress {
   width: 100%;
   background-color: gray;
@@ -105,6 +119,13 @@ select {
 
 .announcement {
   margin-top: 1rem;
+  border: 2px solid #FFD700;
+  padding: 6px;
+}
+
+.announcement p {
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 #announcements-list {
@@ -113,7 +134,7 @@ select {
 }
 
 #congrats-text {
-  font-size: 1.5em;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 899px) {

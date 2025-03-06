@@ -3,8 +3,9 @@
 ## change log
 
 - v3
-	- BEFORE PUSHING: update save/load functions to include new variables; copy html and research into correct files; decide on style for announcements; check for any remaining TODO; set values back to correct; test full game
 	- added next phase of game
+	- updated html and buy functions to display in yiralar or altinlar instead of kurler as relevant
+	- formatting and display updates
 - v2
 	- new research options
 	- auto save every minute
@@ -15,7 +16,11 @@
   - load() function that loads in the save data
   - refresh() that updates the webpage and the arrays for research
 - future
-	- update html and buy functions to display in altinlar instead of kurler
+	- revenue tracker - calculate average revenue per second
+	- auto launch expeditions?
+	- publish success rate for expeditions and time to complete
+	- could randomize the number of research points generated
+
 
 ## game structure
 

@@ -72,7 +72,7 @@ function hireEmployee() {
   balance -= nextEmployee;
   balanceText.innerText = Math.floor(balance);
   employeesCount.innerText = employees;
-  nextEmployee = Math.floor(5 * Math.pow(1.2,employees));
+  nextEmployee = Math.floor(10 * Math.pow(1.2,employees));
   employeeCost.innerText = easyRead(nextEmployee);
   convertCurrency(balance);
   checkButtons();
@@ -158,7 +158,7 @@ function checkButtons() {
   } else {
     buyResearchShip.disabled = false;
   }
-  if (researchShips === 0 || balance < launchCost || typePicker.value === "0" || launching === 1) {
+  if (researchShips === 0 || balance < (launchCost * researchShips) || typePicker.value === "0" || launching === 1) {
     launchBtn.disabled = true;
   } else {
     launchBtn.disabled = false;
@@ -216,8 +216,9 @@ function newResearchShip() {
   balance -= nextResearchShip;
   balanceText.innerText = Math.floor(balance);
   researchFleetCount.innerText = researchShips;
-  nextResearchShip = Math.floor(1 * Math.pow(1.1,researchFleetTotal));
+  nextResearchShip = Math.floor(360000 * Math.pow(1.07,researchFleetTotal));
   researchFleetCost.innerText = easyRead(nextResearchShip);
+  updateLaunchCost();
   convertCurrency(balance);
   checkButtons();
 }
@@ -249,6 +250,7 @@ function calcLaunchCost() {
       launchCost += expeditionOptionsList[i].cost;
     }
   }
+  launchCost = launchCost * researchShips;
   checkButtons();
 }
 
@@ -258,24 +260,33 @@ equipmentPicker.oninput = updateLaunchCost;
 
 function updateLaunchCost() {
   calcLaunchCost();
-  launchCostText.innerText = Math.ceil(launchCost);
+  launchCostText.innerText = `${Math.ceil(launchCost)} \u023a`;
 }
 
 var progress = 0;
 var width = 1;
 var launching = 0;
+var progressDelay;
+var loadDelayTimer;
+var loadDelay = false;
 
 function launchExpedition() {
+  if (loadDelay) {
+    clearTimeout(loadDelayTimer);
+    width = 1;
+    expeditionProgressBar.style.width = "1%";
+  };
   launching = 1;
+  expeditionResultText.innerHTML = `Expedition in progress...`;
   calcLaunchCost();
-  balance -= launchCost;
+  balance -= launchCost * 360;
   balanceText.innerText = Math.floor(balance);
-
+  let currentShips = researchShips;
   let typeValue = parseInt(typePicker.value);
   let crewValue = parseInt(crewPicker.value);
   let equipmentValue = parseInt(equipmentPicker.value);
   let newResearchPoints = 0;
-  let time = 50;
+  let time = 50; 
 
   if (typeValue === 30) {
     time = 600;
@@ -286,7 +297,7 @@ function launchExpedition() {
   progressBar(time);
   checkButtons();
 
-  setTimeout(() => { // wait for progress to finish
+  progressDelay = setTimeout(() => { // wait for progress to finish
     let successRate = typeValue + crewValue + equipmentValue + escapePlansFlag;
 
     if (calcProbability(successRate/100)) { //success!
@@ -298,18 +309,21 @@ function launchExpedition() {
         }
       }
       pointsCount.innerText = researchPoints;
-      expeditionResultText.innerHTML = `Success! This expedition generated ${newResearchPoints} research points.`;
+      expeditionResultText.innerHTML = `Expedition successful! You generated ${newResearchPoints} research points.`;
     } else { //failure
-      let lostShips = Math.floor(Math.random() * (researchShips + 1));
+      let lostShips = Math.floor(Math.random() * (currentShips + 1));
       researchShips -= lostShips;
       researchFleetCount.innerText = researchShips;
       expeditionResultText.innerHTML = `Expedition failed. You lost ${lostShips} ships.`;
+      updateLaunchCost();
     }
-    setTimeout(() => {
+    loadDelayTimer = setTimeout(() => {
       width = 1;
       expeditionProgressBar.style.width = "1%";
-      launching = 0;
-    }, 2000);
+      loadDelay = false;
+    }, 1500);
+    launching = 0;
+    loadDelay = true;
   }, (time * 100) + 500);
 }
 
@@ -336,20 +350,19 @@ if (localStorage.getItem("saveData") !== null) {
 
 // SAVING AND LOADING ----------------------
 
-//TODO update all functions to add new variables
 function refresh() {
   balanceText.innerText = Math.floor(balance);
   convertCurrency(balance);
   employeesCount.innerText = employees;
-  employeeCost.innerText = nextEmployee;
+  employeeCost.innerText = easyRead(nextEmployee);
   shopsCount.innerText = shops;
-  shopCost.innerText = nextShop;
+  shopCost.innerText = easyRead(nextShop);
   fleetCount.innerText = ships;
-  fleetCost.innerText = nextShip;
+  fleetCost.innerText = easyRead(nextShip);
   minesCount.innerText = mines;
-  minesCost.innerText = nextMine;
+  minesCost.innerText = easyRead(nextMine);
   pointsCount.innerText = researchPoints;
-  researchFleetCost.innerText = nextResearchShip;
+  researchFleetCost.innerText = easyRead(nextResearchShip);
   researchFleetCount.innerText = researchShips;
 
   if (research1.flag === 1) employeesDiv.classList.remove("hidden");
@@ -496,8 +509,6 @@ function load() {
   refresh();
 }
 
-//TODO how to make this appear? how to check for balance >= 1bil?
-
 function startOver() {
   deleteSave();
   location.reload();
@@ -513,7 +524,7 @@ window.setInterval(function() {
   checkButtons();
 }, 1000);
 
-/* window.setInterval(function() {
+window.setInterval(function() {
   balance += shopsMult * shops;
   balanceText.innerText = Math.floor(balance);
 }, 5000);
@@ -521,11 +532,11 @@ window.setInterval(function() {
 window.setInterval(function() {
   balance += fleetMult * ships;
   balanceText.innerText = Math.floor(balance);
-}, 20000); */
+}, 20000);
 
 window.setInterval(function() {
-  /* balance += minesMult * mines;
-  balanceText.innerText = Math.floor(balance); */
+  balance += minesMult * mines;
+  balanceText.innerText = Math.floor(balance);
   save();
   if (balance >= 1000000000) billionaireAnnouncementDiv.classList.remove("hidden");
-}, 60000)
+}, 60000);
