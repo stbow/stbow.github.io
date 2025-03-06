@@ -21,7 +21,6 @@
 	- publish success rate for expeditions and time to complete
 	- could randomize the number of research points generated
 
-
 ## game structure
 
 currency - kurler, yiralar, altinlar   
@@ -96,7 +95,6 @@ end game - own the whole world
 	- Survivor Bonuses – If more ships return, sailors gain experience, improving future expeditions.
 	- Special Discoveries – Rare artifacts or knowledge that provide permanent upgrades.
 	- Losses – Ships, supplies, or crew may not return, increasing long-term risk.
-
 
 - occasionally lose a ship to the serpents
 - build up another fleet for research?

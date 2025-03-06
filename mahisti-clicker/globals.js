@@ -29,7 +29,7 @@ const expeditionOptionsList = [
     picker: "type",
     value: 50,
     cost: 800,
-    result: 2
+    result: 5
   },
   {
     id: "exOpt24",
@@ -37,7 +37,7 @@ const expeditionOptionsList = [
     picker: "type",
     value: 30,
     cost: 6000,
-    result: 24
+    result: 25
   },
   {
     id: "exOpt25",
