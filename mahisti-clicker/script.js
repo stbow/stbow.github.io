@@ -21,11 +21,28 @@ const fleetCost = document.getElementById("fleet-cost");
 const minesDiv = document.getElementById("mines-div");
 const minesCount = document.getElementById("mines-count");
 const minesCost = document.getElementById("mines-cost");
+const expeditionsDiv = document.getElementById("expeditions-div");
+const pointsCount = document.getElementById("points-count");
+const researchFleetCost = document.getElementById("research-fleet-cost");
+const researchFleetCount = document.getElementById("research-fleet-count");
+const expeditionOptionsEngine = document.getElementById("expedition-option-engine");
+const typePicker = document.getElementById("type-picker");
+const crewPicker = document.getElementById("crew-picker");
+const equipmentPicker = document.getElementById("equipment-picker");
+const escapePlans = document.getElementById("escape-plans");
+const launchCostText = document.getElementById("launch-cost");
+const expeditionProgressBar = document.getElementById("expedition-progress-bar");
+const expeditionResultText = document.getElementById("expedition-result-text");
+const discoveredSecretAnnouncementDiv = document.getElementById("discovered-secret-announcement");
+const billionaireAnnouncementDiv = document.getElementById("billionaire-announcement");
 const sell = document.getElementById("sell");
 const hire = document.getElementById("hire");
 const buyShop = document.getElementById("buy-shop");
 const buyShip = document.getElementById("buy-ship");
 const buyMine = document.getElementById("buy-mine");
+const buyResearchShip = document.getElementById("buy-research-ship");
+const launchBtn = document.getElementById("launch-btn");
+const startOverBtn = document.getElementById("start-over-btn");
 
 var savegame;
 
@@ -38,6 +55,9 @@ hire.onclick = hireEmployee;
 buyShop.onclick = newShop;
 buyShip.onclick = newShip;
 buyMine.onclick = newMine;
+buyResearchShip.onclick = newResearchShip;
+launchBtn.onclick = launchExpedition;
+startOverBtn.onclick = startOver;
 
 // PURCHASE FUNCTIONS ----------------------
 
@@ -52,8 +72,8 @@ function hireEmployee() {
   balance -= nextEmployee;
   balanceText.innerText = Math.floor(balance);
   employeesCount.innerText = employees;
-  nextEmployee = Math.floor(5 * Math.pow(1.2,employees));
-  employeeCost.innerText = nextEmployee;
+  nextEmployee = Math.floor(10 * Math.pow(1.2,employees));
+  employeeCost.innerText = easyRead(nextEmployee);
   convertCurrency(balance);
   checkButtons();
 }
@@ -64,7 +84,7 @@ function newShop() {
   balanceText.innerText = Math.floor(balance);
   shopsCount.innerText = shops;
   nextShop = Math.floor(1080 * Math.pow(1.1,shops));
-  shopCost.innerText = nextShop;
+  shopCost.innerText = easyRead(nextShop);
   convertCurrency(balance);
   checkButtons();
 }
@@ -75,7 +95,7 @@ function newShip() {
   balanceText.innerText = Math.floor(balance);
   fleetCount.innerText = ships;
   nextShip = Math.floor(43200 * Math.pow(1.1,ships));
-  fleetCost.innerText = nextShip;
+  fleetCost.innerText = easyRead(nextShip);
   convertCurrency(balance);
   checkButtons();
 }
@@ -86,7 +106,7 @@ function newMine() {
   balanceText.innerText = Math.floor(balance);
   minesCount.innerText = mines;
   nextMine = Math.floor(1512000 * Math.pow(1.1,mines));
-  minesCost.innerText = nextMine;
+  minesCost.innerText = easyRead(nextMine);
   convertCurrency(balance);
   checkButtons();
 }
@@ -97,6 +117,19 @@ function convertCurrency(num) {
   altinlar.innerText = Math.floor(num / 360);
   yiralar.innerText = Math.floor(num % 360 / 30);
   kurler.innerText = Math.floor(num % 360 % 30);
+}
+
+function easyRead(num) {
+  a = Math.ceil(num / 360);
+  y = Math.ceil(num % 360 / 30);
+  k = Math.ceil(num % 360 % 30);
+  if (num >= 331) {
+    return `${a} \u023a`;
+  } else if (num >= 30) {
+    return `${y} \u024e`;
+  } else {
+    return `${k} \u20ad`
+  }
 }
 
 function checkButtons() {
@@ -119,6 +152,16 @@ function checkButtons() {
     buyMine.disabled = true;
   } else {
     buyMine.disabled = false;
+  }
+  if (balance < nextResearchShip) {
+    buyResearchShip.disabled = true;
+  } else {
+    buyResearchShip.disabled = false;
+  }
+  if (researchShips === 0 || balance < (launchCost * researchShips) || typePicker.value === "0" || launching === 1) {
+    launchBtn.disabled = true;
+  } else {
+    launchBtn.disabled = false;
   }
 }
 
@@ -165,6 +208,140 @@ function displayResearch(project){
   project.element.appendChild(description);
 }
 
+// RESEARCH EXPEDITIONS --------------------
+
+function newResearchShip() {
+  researchShips++;
+  researchFleetTotal++;
+  balance -= nextResearchShip;
+  balanceText.innerText = Math.floor(balance);
+  researchFleetCount.innerText = researchShips;
+  nextResearchShip = Math.floor(360000 * Math.pow(1.07,researchFleetTotal));
+  researchFleetCost.innerText = easyRead(nextResearchShip);
+  updateLaunchCost();
+  convertCurrency(balance);
+  checkButtons();
+}
+
+function calcProbability(prb) {
+  if (Math.random() < prb) {return true}
+  else {return false};
+}
+
+function calcLaunchCost() {
+  let typeValue = parseInt(typePicker.value);
+  let crewValue = parseInt(crewPicker.value);
+  let equipmentValue = parseInt(equipmentPicker.value);
+
+  launchCost = 0;
+
+  for (let i=0; i < 3; i++) { //look through TYPES
+    if (typeValue === expeditionOptionsList[i].value) {
+      launchCost += expeditionOptionsList[i].cost;
+    }
+  }
+  for (let i=3; i < 6; i++) { //look through CREWS
+    if (crewValue === expeditionOptionsList[i].value) {
+      launchCost += expeditionOptionsList[i].cost;
+    }
+  }
+  for (let i=6; i < expeditionOptionsList.length; i++) { //look through EQUIPS
+    if (equipmentValue === expeditionOptionsList[i].value) {
+      launchCost += expeditionOptionsList[i].cost;
+    }
+  }
+  launchCost = launchCost * researchShips;
+  checkButtons();
+}
+
+typePicker.oninput = updateLaunchCost;
+crewPicker.oninput = updateLaunchCost;
+equipmentPicker.oninput = updateLaunchCost;
+
+function updateLaunchCost() {
+  calcLaunchCost();
+  launchCostText.innerText = `${Math.ceil(launchCost)} \u023a`;
+}
+
+var progress = 0;
+var width = 1;
+var launching = 0;
+var progressDelay;
+var loadDelayTimer;
+var loadDelay = false;
+
+function launchExpedition() {
+  if (loadDelay) {
+    clearTimeout(loadDelayTimer);
+    width = 1;
+    expeditionProgressBar.style.width = "1%";
+  };
+  launching = 1;
+  expeditionResultText.innerHTML = `Expedition in progress...`;
+  calcLaunchCost();
+  balance -= launchCost * 360;
+  balanceText.innerText = Math.floor(balance);
+  let currentShips = researchShips;
+  let typeValue = parseInt(typePicker.value);
+  let crewValue = parseInt(crewPicker.value);
+  let equipmentValue = parseInt(equipmentPicker.value);
+  let newResearchPoints = 0;
+  let time = 50; 
+
+  if (typeValue === 30) {
+    time = 600;
+  } else if (typeValue === 10) {
+    time = 3000;
+  }
+  
+  progressBar(time);
+  checkButtons();
+
+  progressDelay = setTimeout(() => { // wait for progress to finish
+    let successRate = typeValue + crewValue + equipmentValue + escapePlansFlag;
+
+    if (calcProbability(successRate/100)) { //success!
+      for (let i=0; i < 3; i++) { //look through TYPES
+        if (typeValue === expeditionOptionsList[i].value) {
+          newResearchPoints = expeditionOptionsList[i].result;
+          researchPoints += newResearchPoints;
+          break;
+        }
+      }
+      pointsCount.innerText = researchPoints;
+      expeditionResultText.innerHTML = `Expedition successful! You generated ${newResearchPoints} research points.`;
+    } else { //failure
+      let lostShips = Math.floor(Math.random() * (currentShips + 1));
+      researchShips -= lostShips;
+      researchFleetCount.innerText = researchShips;
+      expeditionResultText.innerHTML = `Expedition failed. You lost ${lostShips} ships.`;
+      updateLaunchCost();
+    }
+    loadDelayTimer = setTimeout(() => {
+      width = 1;
+      expeditionProgressBar.style.width = "1%";
+      loadDelay = false;
+    }, 1500);
+    launching = 0;
+    loadDelay = true;
+  }, (time * 100) + 500);
+}
+
+function progressBar(time) {
+  if (progress === 0) {
+    progress = 1;
+    let progressTimer = setInterval(() => {
+      if (width >= 100) {
+        clearInterval(progressTimer);
+        progress = 0;
+      } else {
+        width++;
+        expeditionProgressBar.style.width = width + "%";
+      }
+    }, time);
+  }
+}
+
 // CHECK FOR SAVES -------------------------
 
 if (localStorage.getItem("saveData") !== null) {
@@ -177,22 +354,71 @@ function refresh() {
   balanceText.innerText = Math.floor(balance);
   convertCurrency(balance);
   employeesCount.innerText = employees;
-  employeeCost.innerText = nextEmployee;
-  balanceText.innerText = Math.floor(balance);
+  employeeCost.innerText = easyRead(nextEmployee);
   shopsCount.innerText = shops;
-  shopCost.innerText = nextShop;
-  balanceText.innerText = Math.floor(balance);
+  shopCost.innerText = easyRead(nextShop);
   fleetCount.innerText = ships;
-  fleetCost.innerText = nextShip;
-  balanceText.innerText = Math.floor(balance);
+  fleetCost.innerText = easyRead(nextShip);
   minesCount.innerText = mines;
-  minesCost.innerText = nextMine;
+  minesCost.innerText = easyRead(nextMine);
+  pointsCount.innerText = researchPoints;
+  researchFleetCost.innerText = easyRead(nextResearchShip);
+  researchFleetCount.innerText = researchShips;
 
   if (research1.flag === 1) employeesDiv.classList.remove("hidden");
   if (research5.flag === 1) shopsDiv.classList.remove("hidden");
   if (research4.flag === 1) currency.classList.remove("hidden");
   if (research11.flag === 1) fleetDiv.classList.remove("hidden");
   if (research17.flag === 1) minesDiv.classList.remove("hidden");
+  if (research22.flag === 1 && research34.flag === 0) {
+    expeditionsDiv.classList.remove("hidden");
+    if (research23.flag === 1) typePicker.classList.remove("hidden");
+    if (research24.flag === 1) {
+      var list = document.getElementById("type-picker");
+      var el = document.createElement("option");
+      el.textContent = "Deep sea study";
+      el.value = 30;
+      list.appendChild(el);
+    }
+    if (research25.flag === 1) {
+      var list = document.getElementById("type-picker");
+      var el = document.createElement("option");
+      el.textContent = "Forbidden waters expedition";
+      el.value = 10;
+      list.appendChild(el);
+    }
+    if (research26.flag === 1) crewPicker.classList.remove("hidden");
+    if (research27.flag === 1) {
+      var list = document.getElementById("crew-picker");
+      var el = document.createElement("option");
+      el.textContent = "Level 2";
+      el.value = 15;
+      list.appendChild(el);
+    }
+    if (research28.flag === 1) {
+      var list = document.getElementById("crew-picker");
+      var el = document.createElement("option");
+      el.textContent = "Level 3";
+      el.value = 20;
+      list.appendChild(el);
+    }
+    if (research29.flag === 1) equipmentPicker.classList.remove("hidden");
+    if (research30.flag === 1) {
+      var list = document.getElementById("equipment-picker");
+      var el = document.createElement("option");
+      el.textContent = "Medium quality";
+      el.value = 15;
+      list.appendChild(el);
+    }
+    if (research31.flag === 5) {
+      var list = document.getElementById("equipment-picker");
+      var el = document.createElement("option");
+      el.textContent = "High quality supplies";
+      el.value = 20;
+      list.appendChild(el);
+    }
+    if (research32.flag === 1) escapePlans.classList.remove("hidden");
+  }
 }
 
 function save() {
@@ -223,6 +449,12 @@ function save() {
     shopsMult: shopsMult,
     fleetMult: fleetMult,
     minesMult: minesMult,
+    researchPoints: researchPoints,
+    researchShips: researchShips,
+    nextResearchShip: nextResearchShip,
+    launchCost: launchCost,
+    escapePlansFlag: escapePlansFlag,
+    researchFleetTotal: researchFleetTotal
     //prestige: prestige
   }
   localStorage.setItem("saveData",JSON.stringify(saveData));
@@ -250,6 +482,12 @@ function load() {
   if (typeof savegame.shopsMult !== "undefined") shopsMult = savegame.shopsMult;
   if (typeof savegame.fleetMult !== "undefined") fleetMult = savegame.fleetMult;
   if (typeof savegame.minesMult !== "undefined") minesMult = savegame.minesMult;
+  if (typeof savegame.researchPoints !== "undefined") researchPoints = savegame.researchPoints;
+  if (typeof savegame.researchShips !== "undefined") researchShips = savegame.researchShips;
+  if (typeof savegame.nextResearchShip !== "undefined") nextResearchShip = savegame.nextResearchShip;
+  if (typeof savegame.launchCost !== "undefined") launchCost = savegame.launchCost;
+  if (typeof savegame.escapePlansFlag !== "undefined") escapePlansFlag = savegame.escapePlansFlag;
+  if (typeof savegame.researchFleetTotal !== "undefined") researchFleetTotal = savegame.researchFleetTotal;
   //if (typeof savegame.prestige !== "undefined") prestige = savegame.prestige;
 
   // update research
@@ -269,6 +507,11 @@ function load() {
     }
   }
   refresh();
+}
+
+function startOver() {
+  deleteSave();
+  location.reload();
 }
 
 // TIMERS ------------------------------------
@@ -295,4 +538,5 @@ window.setInterval(function() {
   balance += minesMult * mines;
   balanceText.innerText = Math.floor(balance);
   save();
-}, 60000)
+  if (balance >= 1000000000) billionaireAnnouncementDiv.classList.remove("hidden");
+}, 60000);

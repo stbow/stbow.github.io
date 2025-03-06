@@ -30,14 +30,14 @@ header {
   align-items: baseline;
 }
 
-header, h1, h2, h3 {
+header, h1, h2, h3, h4 {
   color: #FFD700;
   font-family: 'UnderWorld', 'Brush Script MT';
   margin: 0;
 }
 
-h3 {
-  margin-top: 1rem;
+h2, h3, h4 {
+  margin-top: 0.7rem;
   margin-bottom: 1rem;
 }
 
@@ -49,7 +49,17 @@ h3 {
 
 main {
   display: grid;
-  grid-template-columns: 300px 275px 275px;
+  grid-template-columns: 300px 300px 350px;
+}
+
+.balance {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 button {
@@ -58,10 +68,15 @@ button {
   font-family: 'Garamond';
   border-color: #FFEA70;
   border-radius: 2px;
+  margin-bottom: 0.7em;
 }
 
 button:disabled {
   opacity: 0.8;
+}
+
+#expeditions-div {
+  margin-top: 1em;
 }
 
 .research-button {
@@ -74,6 +89,52 @@ button:disabled {
 
 .hidden {
   display: none;
+}
+
+select {
+  padding: 4px;
+  background-color: #FFD700;
+  font-family: 'Garamond';
+  border-color: #FFEA70;
+  border-radius: 2px;
+  width: 200px;
+  margin-bottom: 6px;
+}
+
+#launch-btn {
+  margin-bottom: 0;
+}
+
+#expedition-progress {
+  width: 100%;
+  background-color: gray;
+  margin-top: 1em;
+}
+
+#expedition-progress-bar {
+  width: 1%;
+  height: 20px;
+  background-color: #FFD700;
+}
+
+.announcement {
+  margin-top: 1rem;
+  border: 2px solid #FFD700;
+  padding: 6px;
+}
+
+.announcement p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#announcements-list {
+  margin-top: 1rem;
+  color: #FFD700;
+}
+
+#congrats-text {
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 899px) {
