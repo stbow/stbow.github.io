@@ -1,0 +1,23 @@
+#xs {
+	width: 500px;
+}
+
+#small {
+	width: 576px;
+}
+
+#med {
+	width: 768px;
+}
+
+#lg {
+	width: 992px;
+}
+
+#xlg {
+	width: 1200px;
+}
+
+#xxlg {
+	width: 1400px;
+}
